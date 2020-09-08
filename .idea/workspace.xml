@@ -18,6 +18,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/opis/closure" />
@@ -152,6 +155,7 @@
       <workItem from="1598493761777" duration="1917000" />
       <workItem from="1598496464148" duration="1617000" />
       <workItem from="1598879313860" duration="710000" />
+      <workItem from="1599549932993" duration="70000" />
     </task>
     <servers />
   </component>
