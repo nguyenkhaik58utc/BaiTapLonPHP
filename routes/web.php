@@ -14,19 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/Login', function () {
     return view('Login');
 });
 Route::get('/welcome', function () {
     return 'Chào mừng các bạn đã đến với toidicode.com';
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
