@@ -128,8 +128,9 @@
 
             </div>
             <div class="card-body">
-                <form action="sign_in" method="post" name="myForm" action="process-action.html"
+                <form action="{{route('Login')}}" method="post" name="myForm" action="process-action.html"
                       onsubmit="return validateForm()">
+                    @csrf
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -151,11 +152,6 @@
                                class="btn float-right login_btn">
                     </div>
                 </form>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-center">
-                    <a href="#">Forgot your password?</a>
-                </div>
             </div>
         </div>
     </div>

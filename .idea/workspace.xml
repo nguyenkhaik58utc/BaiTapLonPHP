@@ -19,12 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27a3b4f6-6c75-4508-a9dc-30b12c455ade" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="27a3b4f6-6c75-4508-a9dc-30b12c455ade" name="Default Changelist" comment="khai update login">
+      <change afterPath="$PROJECT_DIR$/resources/views/Menu.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -183,8 +181,26 @@
       <workItem from="1599549932993" duration="70000" />
       <workItem from="1599554169246" duration="605000" />
       <workItem from="1599806910171" duration="601000" />
-      <workItem from="1600653023269" duration="2504000" />
+      <workItem from="1600653023269" duration="3178000" />
+      <workItem from="1600841800949" duration="43000" />
+      <workItem from="1601257503075" duration="1240000" />
+      <workItem from="1601446374894" duration="28000" />
+      <workItem from="1602149493350" duration="1474000" />
+      <workItem from="1602397599063" duration="3266000" />
+      <workItem from="1602917197144" duration="1431000" />
+      <workItem from="1602954624796" duration="911000" />
+      <workItem from="1603002739120" duration="6611000" />
+      <workItem from="1603034857589" duration="3852000" />
+      <workItem from="1603424860301" duration="661000" />
     </task>
+    <task id="LOCAL-00001" summary="khai update login">
+      <created>1600658279830</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600658279830</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,15 +216,44 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="khai update login" />
+    <option name="LAST_COMMIT_MESSAGE" value="khai update login" />
   </component>
   <component name="WindowStateProjectService">
     <state x="578" y="292" key="#Composer" timestamp="1598493808646">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="292" key="#Composer/0.0.1536.824@0.0.1536.824" timestamp="1598493808646" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1599554928221">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601446392495">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1599554928221" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601446392495" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1600660056706">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600660056706" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1600660056706">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600660056706" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1600660056706">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600660056706" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1600660056706">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600660056706" />
+    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1602149828190">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1602149828190" />
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1600658286250">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600658286250" />
   </component>
 </project>
