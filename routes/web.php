@@ -3,16 +3,22 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades;
 
+
+//Login
 Route::get('/', function () {
     return view('Login');
 });
 
-Route::get('/menu', function () {
-    return view('Menu');
+Route::get('getFormChange',function (){
+   return view('Login.ChangePassword');
 });
 
-Route::Post("Login", ['as' => 'Login', 'uses' => 'LoginController@Login']);
+Route::Post("Home", ['as' => 'Login', 'uses' => 'LoginController@Home']);
 
+//Menu
+Route::get("getMenu", "MenuController@getMenu");
+
+// database
 Route::get("db",function (){
    $data = Facades\DB::table('employee') -> get();
    var_dump($data);

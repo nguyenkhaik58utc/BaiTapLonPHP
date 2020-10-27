@@ -10,13 +10,6 @@ use mysql_xdevapi\Table;
 
 class LoginController extends Controller
 {
-    public function Hello(){
-        echo "hello my fiend";
-    }
-    public function getTen($ten){
-        echo "hello my fiend: ".$ten;
-       return redirect() -> route('myroute');
-    }
 
     public function setCookie(){
         $reponse = new Response();
@@ -27,14 +20,13 @@ class LoginController extends Controller
     {
         return $request->cookie('hello');
     }
-    public function Login(Request $request){
+    public function Home(Request $request){
         $pw = $request -> password;
         $user = $request -> username;
 
         $a = DB::table('employee') ->get();
-        var_dump($a);
         if($user == "nguyenkhaik58" && $pw == "123456"){
-            return view('Menu');
+            return view('Home.layout');
         }
         else return view('Login');
 
