@@ -5,11 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use mysql_xdevapi\Table;
 
 class LoginController extends Controller
 {
+
+    public function ChangePW(Request $request)
+    {
+        $currentpw = base64_encode($request -> currentpw);
+        $psw = base64_encode($request -> psw);
+        $id = Session::get("id");
+        $result = DB::select("select * from employee where password = '".$currentpw."' and id = '".$id."'");
+        if( $result[0] -> id != null){
+            DB::table('employee') -> where('id',$id) -> update(['password' => $psw]);
+            return true;
+        }
+        else
+            return false;
+    }
+
 
     public function setCookie(){
         $reponse = new Response();
@@ -21,14 +37,22 @@ class LoginController extends Controller
         return $request->cookie('hello');
     }
     public function Home(Request $request){
-        $pw = $request -> password;
+        $pw = base64_encode($request -> password);
         $user = $request -> username;
 
         $a = DB::table('employee') ->get();
-        if($user == "nguyenkhaik58" && $pw == "123456"){
+        $result = DB::select("select * from employee where userEmp = '".$user."' and password = '".$pw."'");
+        if($result != null){
+            Session::put("id",$result[0] -> id);
+            Session::put("departmentId",$result[0] -> departmentid);
+            Session::put("email",$result[0] -> email);
+            Session::put("nameEmp",$result[0] -> nameEmp);
+            Session::put("password",base64_encode($request -> password));
+            Session::put("roleId",$result[0] -> roleId);
+            Session::put("userEmp",$result[0] -> userEmp);
             return view('Home.layout');
         }
-        else return view('Login');
+        else return view('/Login');
 
     }
 }

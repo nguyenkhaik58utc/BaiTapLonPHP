@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="{{ URL::asset('js/lock.js') }}"></script>
@@ -33,24 +34,7 @@
             <!-- Rightmain -->
             <div id="rightMain" class="col-sm-10 screen-rightmenu"
                  style="background-color:aliceblue;min-height:400px;float:right">
-                <div class="dropdown" >
-                    <button class="btn btn-default dropdown-toggle" style="color: white;background-color: black" data-toggle="dropdown">Tutorials
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu" style="background-color: black">
-                        <li><a tabindex="-1" href="#" style="color: red;">áddsaddsa</a></li>
-                        <li><a tabindex="-1" href="#" style="color: red;">bnm</a></li>
-
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Tutorials
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="#">HTML</a></li>
-                        <li><a tabindex="-1" href="#">CSS</a></li>
-
-                    </ul>
-                </div>
+                @yield('NoiDung')
             </div>
 
         </div>
@@ -65,7 +49,7 @@
             </li>
             <li>
                 <a href="home">
-                    <img src="img/logoPage2.png" alt="logo2.png" border="0" style="height:100px" onclick="homePage()"/>
+                    <img src="https://www.upsieutoc.com/images/2020/10/30/logoPage2.png" alt="logo2.png" border="0" style="height:100px" onclick="homePage()"/>
                 </a>
             </li>
         </ul>

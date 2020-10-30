@@ -15,8 +15,27 @@ Route::get('getFormChange',function (){
 
 Route::Post("Home", ['as' => 'Login', 'uses' => 'LoginController@Home']);
 
+Route::Get("Change","LoginController@ChangePW");
+
 //Menu
 Route::get("getMenu", "MenuController@getMenu");
+
+//Salary
+Route::get("/Salary/AddOT",function (){
+   return view('Registration.AddOverTime');
+});
+Route::get("/Salary/ConfirmOT",function (){
+   return view('Registration.ConfirmOT');
+});
+Route::get("/Salary/TotalSalary",function (){
+   return view('Registration.TotalSalary');
+});
+Route::get('/Employee/ListEmp',function (){
+   return view('Employee.ListEmployee');
+});
+Route::get('/Employee/Detail',function (){
+   return view('Employee.InforEmployee');
+});
 
 // database
 Route::get("db",function (){

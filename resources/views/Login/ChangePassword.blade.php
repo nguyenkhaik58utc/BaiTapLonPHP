@@ -1,19 +1,11 @@
+@extends('Home.layout')
+
+@section('NoiDung')
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/410ba3b69f.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link data-semver="0.4.2" rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/password.css') }}">
-
+    <script src="{{ URL::asset('js/password.js') }}"></script>
 </head>
 <body>
 
@@ -98,41 +90,9 @@
             length.classList.add("invalid");
         }
     }
-
-
-    function changePW() {
-        var currentPW = document.getElementById("currentPw").value;
-        var newPW = document.getElementById("psw").value;
-
-        $.ajax({
-            url: "/Admin/Login/ChangePw",
-            type: "POST",
-            data: {
-                currentPW: currentPW,
-                newPW: newPW,
-            },
-            success: function (data) {
-
-                window.setTimeout(function () {
-                    localStorage.setItem("swal",
-                        swal({
-                            title: "Success!",
-                            text: "Message sent",
-                            type: "success",
-                            timer: 800,
-                            showConfirmButton: false
-                        })
-                    );
-                }, 800);
-                window.location = 'https://localhost:44364/Admin/Home'
-
-            },
-            error: function () {
-                swal("Error", "Change false", "error");
-            }
-        });
-    }
 </script>
 
 </body>
 </html>
+
+@endsection

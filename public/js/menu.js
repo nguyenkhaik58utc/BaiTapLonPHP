@@ -42,18 +42,18 @@ $(document).ready(function () {
                         "                    <ul class='dropdown-menu' >\n";
                     for(var j = 0; j < data.length ; j++){
                         if(data[j].parentid == data[i].id){
-                            db += "<li><a tabindex='-1' href='#' >"+ data[j].name +"</a></li>";
+                            db += "<li><a tabindex='-1' href='"+ data[j].url +"' >"+ data[j].name +"</a></li>";
                         }
                     }
                     db += "    </ul>\n" +
                         "                </div>";
                 } else {
                     if(checkId(lstParentSort, data[i].id) == 0 && data[i].parentid == 0){
-                        db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='#'>"+ data[i].name +"</a>";
+                        db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='"+ data[i].url +"'>"+ data[i].name +"</a>";
                     }
                 }
             }
-            db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='/getFormChange'>Đổi mật khẩu</a>";
+            db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='/getFormChange'>Đổi mật khẩu</a><br>";
             db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='http://localhost:8000/'>Đăng xuất</a>";
 
             $('#dataMenu').html(db);
