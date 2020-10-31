@@ -408,7 +408,7 @@ function convertDate1(data) {
     return ConvDate.getDate() + "/" + month + "/" + ConvDate.getFullYear();
 }
 
-$(document).ready(function () {
+function getInfor () {
     $
         .ajax({
             url: "/Admin/Home/inforUserLogin",
@@ -453,4 +453,4 @@ $(document).ready(function () {
         });
 
 
-});
+};

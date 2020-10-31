@@ -6,44 +6,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Xét duyệt OverTime</title>
+    <script src="{{ URL::asset('js/confirmOT.js') }}"></script>
 </head>
 <body>
 
 <div class="container">
-    <nav class="navbar navbar-expand-sm"
-         style="margin-bottom: 0px; border-bottom-width: 0px; padding-bottom: 5px; padding-right: 0px; padding-top: 0px; border-top-width: 0px;">
-        <!-- Brand/logo -->
-        <div class="navbar-nav mr-auto">
-            <h3 style="margin-top: 27px; margin-bottom: 0px;">
-                Danh Sách Chờ
-                Phê Duyệt
-            </h3>
+    <div class="row">
+        <div class="col-md-5 ">
+            <h3 style="margin-top: 20px;">Danh Sách Chờ Phê Duyệt</h3>
         </div>
+        <div class="col-md-7">
+            <nav class="navbar navbar-expand-lg  ">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav "
+                        style="position: absolute; top: 0; right: 0; margin-top: 14px;">
+                        <li class="nav-item dropdown">
+                            <button type="button"
+                                    class="nav-link dropdown-toggle btn btn-info"
+                                    href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                Search
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown"
+                                 style="width:180px;background-color:aqua">
+                                <!-- <a class="dropdown-item" href="a.html">Search</a> -->
+                                <a class="dropdown-item"
+                                   onclick="functionSearchOT(2)">
+                                    Đăng ký không thành công
+                                </a>
+                                <br/>
+                                <!-- <div class="dropdown-divider"></div> -->
+                                <a class="dropdown-item"
+                                   onclick="functionSearchOT(1) ">
+                                    Đăng ký thành công
+                                </a>
+                                <br/>
+                                <a class="dropdown-item"
+                                   onclick="functionSearchOT(3) ">
+                                    Chờ Phê Duyệt
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <button id="btn-download" type="button" class="btn btn-info"
+                                    onclick="exportExcel1()">Export
+                            </button>
 
-        <div class="navbar-nav justify-content-end"
-             style="padding-top: 15px; border-top-width: 0px; margin-top: 7px;">
-            <div class="dropdown">
-                <button class=" dropdown-toggle btn btn-outline-primary " type="button"
-                        data-toggle="dropdown"
-                        style="padding-bottom: 14px; padding-top: 10px;">
-                    Search
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" onclick="functionSearch('SearchByCancel',1)">Tìm kiếm từ chối</a></li>
-                    <li><a class="dropdown-item" onclick="functionSearch('SearchBySuccess',2) ">Tìm lịch đăng ký thành công</a></li>
-                </ul>
-            </div>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-info" onclick="Submit()">Submit</button>
+                        </li>
+                    </ul>
 
-            <form method="get" action="<%=request.getContextPath()%>/excel1">
-                <input id="temp" style="display: none" name="temp" />
-                <input id="year" style="display: none" name="year" />
-                <input id="month" style="display: none" name="month" />
-                <button id="btn-download" type="button" class="btn btn-outline-primary" onclick="exportExcel1()" style="height: 47px;width: 77px;">Export</button>
-            </form>
-            <button type="button" class="btn btn-outline-primary" onclick="Submit()">Submit</button>
+                </div>
+            </nav>
+
         </div>
-    </nav>
-
+    </div>
     <div class="row">
         <table class="table table-hover" id="table">
             <thead>
@@ -61,6 +81,7 @@
                 <th>T/gian bắt đầu</th>
                 <th>T/gian kết thúc</th>
                 <th>Lý do</th>
+                <th>Lý do hủy</th>
                 <th class="filter">Trạng Thái</th>
                 <th>action</th>
             </tr>
@@ -85,7 +106,6 @@
 </div>
 
 
-
 <!--  popup hủy đăng ký  -->
 <div id="myModalAdd1" class="modal fade" style="margin-top: 100px;">
     <div class="modal-dialog">
@@ -97,18 +117,17 @@
             <div class="modal-body">
                 <!-- <form method="post" id="insert_form"> -->
                 <input type="text" name="otId" id="otId" class="form-control" style="display:none ">
-                <label>Lý Do: </label> <input type="text" name="reasonForCancel"
-                                              id="reasonForCancel" class="form-control">
+                <label>Lý Do: </label> <textarea type="text" name="reasonForCancel" rows="4"
+                                                 id="reasonForCancel" class="form-control"></textarea>
                 <!-- </form> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="close" data-dismiss="modal"
                         onclick="cancelRegistration()">
-                    Gửi
+                    Send
                 </button>
-                <button type="button" class="close" data-dismiss="modal">
-                    Trở
-                    Về
+                <button type="button" class="close" data-dismiss="modal" style="margin-right: 20px">
+                    Cancel
                 </button>
             </div>
         </div>

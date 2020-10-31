@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/lock.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/layout.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/notification.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/410ba3b69f.js"></script>
@@ -43,6 +44,16 @@
 <div>
     <nav class="navbar navbar-expand-sm "
          style="background-image: url('https://img2.thuthuatphanmem.vn/uploads/2018/11/30/hinh-nen-may-trang-dep_104324872.jpg'); top: 0px; position: fixed; width: 100%">
+        <ul class="navbar-nav mr-auto ">
+            <li>
+                <div style="margin-top: 25px;margin-left: 20px">
+                    <a href="#" class="notification">
+                        <span><img src="https://www.flaticon.com/svg/static/icons/svg/2645/2645897.svg" style="height: 40px;width: 30px"></span>
+                        <span class="badge" id="numberNoti"></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
         <ul class="navbar-nav justify-content-end" style="float:right">
             <li>
                 <div id="vnclock" align="center" style="margin-right:20px; margin-top:10px "></div>

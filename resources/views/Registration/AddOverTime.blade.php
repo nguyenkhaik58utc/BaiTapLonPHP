@@ -6,13 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Đăng ký OverTime</title>
+    <script src="{{ URL::asset('js/Employee.js') }}"></script>
+    <script src="{{ URL::asset('js/listEmployee.js') }}"></script>
 </head>
 <body>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-5 ">
-            <h3 style="margin-top: 20px;">Danh Sách Chờ Phê Duyệt</h3>
+            <h3 style="margin-top: 20px;">Danh Sách Đăng Ký</h3>
         </div>
         <div class="col-md-7">
             <nav class="navbar navbar-expand-lg  ">
@@ -31,18 +33,18 @@
                                  style="width:180px;background-color:aqua">
                                 <!-- <a class="dropdown-item" href="a.html">Search</a> -->
                                 <a class="dropdown-item"
-                                   onclick="functionSearchOT('SearchOverTime',3)">
+                                   onclick="functionSearchOT(2)">
                                     Đăng ký không thành công
                                 </a>
                                 <br/>
                                 <!-- <div class="dropdown-divider"></div> -->
                                 <a class="dropdown-item"
-                                   onclick="functionSearchOT('SearchOverTime',1) ">
+                                   onclick="functionSearchOT(1) ">
                                     Đăng ký thành công
                                 </a>
                                 <br/>
                                 <a class="dropdown-item"
-                                   onclick="functionSearchOT('SearchOverTime',2) ">
+                                   onclick="functionSearchOT(3) ">
                                     Chờ Phê Duyệt
                                 </a>
                             </div>
@@ -116,9 +118,9 @@
             </div>
             <div class="modal-body">
                 <form method="post" id="insert_form">
-                    <input type="number" name="otId2" id="otId2" class="form-control" hidden/>
-                    <label>Lý Do :</label> <input type="text" name="LyDoHuy2"
-                                                  id="LyDoHuy2" class="form-control"/> <br>
+                    <input type="number" name="otId2" id="otId2" hidden aria-hidden="true"/>
+                    <label>Lý Do :</label> <textarea type="text" name="LyDoHuy2" rows="4"
+                                                     id="LyDoHuy2" class="form-control"></textarea> <br>
                 </form>
             </div>
             <div class="modal-footer">

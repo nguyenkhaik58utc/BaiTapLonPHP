@@ -8,7 +8,6 @@ const $BTN = $('#export-btn');
 const $EXPORT = $('#export');
 
 
-
 // A few jQuery helpers for exporting only
 jQuery.fn.pop = [].pop;
 jQuery.fn.shift = [].shift;
@@ -76,8 +75,8 @@ $(document).ready(function () {
     });
 
 
-
 });
+
 function calculateRow(row) {
     var price = +row.find('input[name^="price"]').val();
 
@@ -106,8 +105,8 @@ $(document)
             var arrAddr = new Array();
             $
                 .ajax({
-                    url: "/Admin/Registration/tableRegistration",
-                    type: "POST",
+                    url: "/getRegistration",
+                    type: "Get",
                     data: {
                         month: month,
                         year: year
@@ -116,52 +115,49 @@ $(document)
 
                         var data = "";
                         for (var i = 0; i < res.length; i++) {
-                            var split1 = res[i].Registration_Date.split("(");
-                            var split2 = split1[1].split(")");
-                            var dateRegistration = convertDate(split2[0]);
-                            arrayData[i] = { "otId": res[i].OT_ID, "registrationDate": dateRegistration, "timeStart": res[i].Time_Start.Hours + ":" + res[i].Time_Start.Minutes + ":00", "timeFinish": res[i].Time_Finish.Hours + ":" + res[i].Time_Finish.Minutes + ":00", "reason": res[i].Reason };
-                            // arrAddr[i] =
+                            arrayData[i] = {
+                                "otId": res[i].id,
+                                "registrationDate": res[i].registrationDate,
+                                "timeStart": res[i].timeStart,
+                                "timeFinish": res[i].timeFinish,
+                                "reason": res[i].reason
+                            };
                         }
                         for (var i = 0; i < res.length; i++) {
-                            var split1 = res[i].Registration_Date.split("(");
-                            var split2 = split1[1].split(")");
-                            var dateRegistration = convertDate(split2[0]);
-                            if (res[i].Status_flag == 2) {
+                            if (res[i].statusid == 3) {
                                 data += "<tr data-index='" + i + "'><td hidden>"
-                                    + res[i].OT_ID
+                                    + res[i].id
                                     + "</td><td class='data-edit regis-date' contenteditable='true'>"
-                                    + dateRegistration
+                                    + res[i].registrationDate
                                     + "</td><td class='data-edit time-start' contenteditable='true'>"
-                                    + res[i].Time_Start.Hours + ":" + res[i].Time_Start.Minutes + ":00"
+                                    + res[i].timeStart
                                     + "</td><td class='data-edit time-finish' contenteditable='true'>"
-                                    + res[i].Time_Finish.Hours + ":" + res[i].Time_Finish.Minutes + ":00"
+                                    + res[i].timeFinish
                                     + "</td><td class='data-edit reason' contenteditable='true'>"
-                                    + res[i].Reason
+                                    + res[i].reason
                                     + "</td><td class='not-edit'> "
                                     + "</td><td class='not-edit'>Chờ Duyệt "
                                     + "</td><td class='not-edit'>"
                                     + "<a class='delete1' title='Delete1' data-target='#myModalAdd2' onclick='functionDeleteTime()'  class='btn btn-info btn-lg'  data-toggle='modal'><i class=' fas fa-trash' style='color: red;'></i></a></td></tr>";
                                 $('#tableRegistration').html(data);
 
-                            }
-                            else {
+                            } else {
                                 var status;
-                                if (res[i].Status_flag == 1) {
+                                if (res[i].statusid == 1) {
                                     status = "Đã duyệt";
-                                }
-                                else status = "bị hủy";
+                                } else status = "Bị hủy";
                                 data += "<tr data-index='" + i + "'><td hidden>"
-                                    + res[i].OT_ID
+                                    + res[i].id
                                     + "</td><td >"
-                                    + dateRegistration
+                                    + res[i].registrationDate
                                     + "</td><td>"
-                                    + res[i].Time_Start.Hours + ":" + res[i].Time_Start.Minutes + ":00"
+                                    + res[i].timeStart
                                     + "</td><td>"
-                                    + res[i].Time_Finish.Hours + ":" + res[i].Time_Finish.Minutes + ":00"
+                                    + res[i].timeFinish
                                     + "</td><td>"
-                                    + res[i].Reason
+                                    + res[i].reason
                                     + "</td><td>"
-                                    + res[i].Reason_For_Cancel
+                                    + res[i].reasonForCancel
                                     + "</td><td>"
                                     + status
                                     + "</td><td></td></tr>";
@@ -176,16 +172,11 @@ $(document)
         });
 
 
-
-
-
-
-
-
 // check date, time
 var check;
 var checkAdd = 1;
 var checkEdit = 1;
+
 function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, dateInput2, arrTimeStart, arrTimeFinish, arrAddr, checkClick) {
     if (NgayDangKy == "") {
         if (arrAddr.length != 0) {
@@ -198,8 +189,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
         status = "hãy nhập ngày!";
         notification(status);
         return false;
-    }
-    else {
+    } else {
         if (TGBatDau == "") {
             status = "hãy nhập thời gian bắt đầu!";
             notification(status);
@@ -211,8 +201,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
             }
             check = 0;
             return false;
-        }
-        else {
+        } else {
             if (TGKetThuc == "") {
                 status = "hãy nhập thời gian kết thúc!";
                 notification(status);
@@ -224,8 +213,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                 }
                 check = 0;
                 return false;
-            }
-            else {
+            } else {
                 if (LyDo == "") {
                     status = "hãy nhập lý do!";
                     notification(status);
@@ -237,8 +225,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                     }
                     check = 0;
                     return false;
-                }
-                else {
+                } else {
                     // check nga`y hiê?n ta?i
                     if (dateInput2.getMonth() == dateNow.getMonth() && dateInput2.getFullYear() == dateNow.getFullYear() && dateInput2.getDate() == dateNow.getDate()) {
                         if (arrTimeStart[0] < now.getHours()) {
@@ -253,8 +240,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                             }
                             check = 0;
                             return false;
-                        }
-                        else {
+                        } else {
                             if (arrTimeStart[0] == now.getHours() && arrTimeStart[1] > now.getMinutes() && arrTimeStart[0] < arrTimeFinish[0]) {
                                 check = 1;
                                 if (checkClick == 1) {
@@ -264,8 +250,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                             status = "Dữ liệu đã tồn tại!";
                                             notification(status);
                                             break;
-                                        }
-                                        else {
+                                        } else {
                                             check = 1;
                                             status = " ";
                                             notification(status);
@@ -280,8 +265,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                     arrAddr[i][0].css("color", "black");
                                 }
 
-                            }
-                            else {
+                            } else {
                                 if (arrTimeStart[0] > now.getHours() && arrTimeStart[0] < arrTimeFinish[0]) {
                                     check = 1;
                                     if (checkClick == 1) {
@@ -291,8 +275,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                                 status = "Dữ liệu đã tồn tại!";
                                                 notification(status);
                                                 break;
-                                            }
-                                            else {
+                                            } else {
                                                 check = 1;
                                                 status = " ";
                                                 notification(status);
@@ -307,8 +290,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                         arrAddr[i][0].css("color", "black");
                                     }
 
-                                }
-                                else {
+                                } else {
                                     if (arrTimeStart[0] < now.getHours() || (arrTimeStart[0] == now.getHours() && arrTimeStart[1] < now.getMinutes())) {
                                         status = "Thời gian bắt đầu không hợp lệ!\n Thời gian bắt đầu nhở hơn thời gian hiện tại";
                                         notification(status);
@@ -320,8 +302,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                         }
                                         check = 0;
                                         return false;
-                                    }
-                                    else {
+                                    } else {
                                         status = "Thời gian bắt đầu lớn hơn thời gian kết thúc!";
                                         notification(status);
                                         if (arrAddr.length != 0) {
@@ -337,8 +318,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                 }
                             }
                         }
-                    }
-                    else {
+                    } else {
                         if (dateInput2.getFullYear() > dateNow.getFullYear() || (dateInput2.getFullYear() == dateNow.getFullYear() && dateInput2.getMonth() > dateNow.getMonth()) || (dateInput2.getFullYear() == dateNow.getFullYear() && dateInput2.getMonth() == dateNow.getMonth() && dateInput2.getDate() > dateNow.getDate())) {
                             if ((arrTimeStart[0] == arrTimeFinish[0] && arrTimeStart[1] < arrTimeFinish[1]) || arrTimeStart[0] < arrTimeFinish[0]) {
                                 check = 1;
@@ -349,8 +329,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                             status = "Dữ liệu đã tồn tại!";
                                             notification(status);
                                             break;
-                                        }
-                                        else {
+                                        } else {
                                             check = 1;
                                             status = " ";
                                             notification(status);
@@ -364,8 +343,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                     arrAddr[i][3].css("color", "black");
                                     arrAddr[i][0].css("color", "black");
                                 }
-                            }
-                            else {
+                            } else {
                                 status = "thời gian bắt đầu và thời gian kết thúc không hợp lệ!";
                                 notification(status);
                                 if (arrAddr.length != 0) {
@@ -378,8 +356,7 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                 check = 0;
                                 return false;
                             }
-                        }
-                        else {
+                        } else {
                             status = "Nhập ngày không hợp lệ!\n Thời gian đăng kysnhor hơn thời gian hiện tại";
                             notification(status);
                             if (arrAddr.length != 0) {
@@ -450,8 +427,7 @@ function editTime() {
             checkDateTime(i, arrayEdit[i][1], arrayEdit[i][2], arrayEdit[i][3], arrayEdit[i][4], now, dateNow, dateInput2, arrTimeStart, arrTimeFinish, arrAddr, 0);
             if (check == 1) {
                 checkEdit = 1;
-            }
-            else {
+            } else {
                 checkEdit = 0;
             }
 
@@ -459,8 +435,8 @@ function editTime() {
                 arrAddr = [];
                 $
                     .ajax({
-                        url: "/Admin/Registration/editRegistrationDetail",
-                        type: "post",
+                        url: "/editRegistrationDetail",
+                        type: "Get",
                         data: {
                             OtId: arrayEdit[i][0],
                             NgayDangKy: arrayEdit[i][1],
@@ -495,7 +471,6 @@ function editTime() {
     }
 
 }
-
 
 
 // thêm li?ch la`m viê?c OT
@@ -533,8 +508,7 @@ function addTime() {
     checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, dateInput2, arrTimeStart, arrTimeFinish, arrAdd, checkClick);
     if (check == 1) {
         checkAdd = 1;
-    }
-    else {
+    } else {
         checkAdd = 0;
     }
     if (checkAdd == 1 && checkEdit == 1 && checkClick == 1) {
@@ -542,8 +516,8 @@ function addTime() {
         arrAddr = [];
         $
             .ajax({
-                url: "/Admin/Registration/addRegistrationDetail",
-                type: "post",
+                url: "/addRegistrationDetail",
+                type: "Get",
                 data: {
                     NgayDangKy: NgayDangKy,
                     TGBatDau: TGBatDau,
@@ -573,6 +547,7 @@ function addTime() {
             });
     }
 }
+
 // function submit
 function Submit1() {
     editTime();
@@ -580,6 +555,7 @@ function Submit1() {
         addTime();
     }
 }
+
 // delete row on add button click
 function functionDelete() {
     var otId = document.getElementById("otId2").value;
@@ -595,8 +571,8 @@ function functionDelete() {
 
 
     $.ajax({
-        url: "/Admin/Registration/deleteResgitration",
-        type: "POST",
+        url: "/deleteRegistration",
+        type: "Get",
         data: {
             otId: otId,
             LyDoHuy: LyDoHuy,
@@ -621,6 +597,7 @@ function functionDelete() {
         }
     });
 }
+
 // lâ´y id dua lên popup
 function functionDeleteTime() {
     var table = document.getElementById('myTable');
@@ -636,52 +613,68 @@ function functionDeleteTime() {
 
 // ti`m kiê´m
 temp = 0;
-function functionSearchOT(searchId, statusFlag) {
+
+function functionSearchOT(statusId) {
     $(".addrow").removeAttr("disabled");
     month = current.getMonth() + 1;
-    var link = "/Admin/AddOverTime/" + searchId;
     $
         .ajax({
-            url: link,
-            type: "Post",
+            url: '/SearchOverTime',
+            type: "Get",
             data: {
-                statusFlag: statusFlag
+                statusId: statusId,
+                month: month,
+                year: year
             },
             success: function (res) {
                 var data = "";
                 for (var i = 0; i < res.length; i++) {
-                    var split1 = res[i].Registration_Date.split("(");
-                    var split2 = split1[1].split(")");
-                    var dateRegistration = convertDate(split2[0]);
-                    var status;
-                    if (res[i].Status_flag == 1)
-                        status = "Đã duyệt";
-                    else {
-                        if (res[i].Status_flag == 2)
-                            status = "Chờ duyệt";
-                        else status = "Bị hủy";
+                    if (res[i].statusid == 3) {
+
+                        data += "<tr data-index='" + i + "'><td hidden>"
+                            + res[i].id
+                            + "</td><td class='data-edit regis-date' contenteditable='true'>"
+                            + res[i].registrationDate
+                            + "</td><td class='data-edit time-start' contenteditable='true'>"
+                            + res[i].timeStart
+                            + "</td><td class='data-edit time-finish' contenteditable='true'>"
+                            + res[i].timeFinish
+                            + "</td><td class='data-edit reason' contenteditable='true'>"
+                            + res[i].reason
+                            + "</td><td class='not-edit'> "
+                            + res[i].reasonForCancel
+                            + "</td><td class='not-edit'>Chờ duyệt"
+                            + "</td><td class='not-edit'>"
+                            + "<a class='delete1' title='Delete1' data-target='#myModalAdd2' onclick='functionDelete1()'  class='btn btn-info btn-lg'  data-toggle='modal'><i class=' fas fa-trash' style='color: red;' /i></a></td></tr>";
+
+                    } else {
+                        var status;
+                        if (res[i].statusid == 1) {
+                            status = "Đã duyệt";
+                        } else status = "Bị hủy";
+                        data += "<tr data-index='" + i + "'><td hidden>"
+                            + res[i].id
+                            + "</td><td >"
+                            + res[i].registrationDate
+                            + "</td><td>"
+                            + res[i].timeStart
+                            + "</td><td>"
+                            + res[i].timeFinish
+                            + "</td><td>"
+                            + res[i].reason
+                            + "</td><td>"
+                            + res[i].reasonForCancel
+                            + "</td><td>"
+                            + status
+                            + "</td><td></td></tr>";
+
                     }
-                    data += "<tr data-index='" + i + "'><td hidden>"
-                        + res[i].OT_ID
-                        + "</td><td >"
-                        + dateRegistration
-                        + "</td><td>"
-                        + res[i].Time_Start.Hours + ":" + res[i].Time_Start.Minutes + ":00"
-                        + "</td><td>"
-                        + res[i].Time_Finish.Hours + ":" + res[i].Time_Finish.Minutes + ":00"
-                        + "</td><td>"
-                        + res[i].Reason
-                        + "</td><td>"
-                        + res[i].Reason_For_Cancel
-                        + "</td><td>"
-                        + status
-                        + "</td><td></td></tr>";
                 }
                 $('#tableRegistration').html(data);
 
             },
             error: function () {
-                swal("Error", "Get Registration for " + searchId, "error");
+                swal("Error", "Get Registration for Search", "error");
             }
         });
 }
@@ -690,6 +683,7 @@ function functionSearchOT(searchId, statusFlag) {
 function notification(status) {
     if (status != "") document.getElementById("demo1").innerHTML = status;
 }
+
 // phân trang theo tha´ng
 function PagitrationByMonthAddOT(id, index) {
     $(".addrow").removeAttr("disabled");
@@ -698,21 +692,17 @@ function PagitrationByMonthAddOT(id, index) {
     if (month == 1 && id == 'PreviousByMonth') {
         year = year - 1;
         month = 12;
-        link = "/Admin/AddOverTime/" + id;
     } else if (month == 12 && id == 'NextByMont') {
         year = year + 1;
         month = 1;
-        link = "/Admin/AddOverTime/" + id;
-    }
-    else {
+    } else {
         month += parseInt(index);
         year;
-        link = "/Admin/AddOverTime/" + id;
     }
     $
         .ajax({
-            url: link,
-            type: "POST",
+            url: '/PagingByMonthOverTime',
+            type: "Get",
             data: {
                 temp: temp,
                 month: month,
@@ -721,52 +711,50 @@ function PagitrationByMonthAddOT(id, index) {
             success: function (res) {
                 var data = "";
                 for (var i = 0; i < res.length; i++) {
-                    var split1 = res[i].Registration_Date.split("(");
-                    var split2 = split1[1].split(")");
-                    var dateRegistration = convertDate(split2[0]);
-                    arrayData[i] = { "otId": res[i].OT_ID, "registrationDate": dateRegistration, "timeStart": res[i].Time_Start.Hours + ":" + res[i].Time_Start.Minutes + ":00", "timeFinish": res[i].Time_Finish.Hours + ":" + res[i].Time_Finish.Minutes + ":00", "reason": res[i].Reason };
-                    // arrAddr[i] =
+                    arrayData[i] = {
+                        "otId": res[i].id,
+                        "registrationDate": res[i].registrationDate,
+                        "timeStart": res[i].timeStart,
+                        "timeFinish": res[i].timeFinish,
+                        "reason": res[i].reason
+                    };
                 }
                 for (var i = 0; i < res.length; i++) {
-                    var split1 = res[i].Registration_Date.split("(");
-                    var split2 = split1[1].split(")");
-                    var dateRegistration = convertDate(split2[0]);
-                    if (res[i].Status_flag == 2) {
+                    if (res[i].statusid == 3) {
 
                         data += "<tr data-index='" + i + "'><td hidden>"
-                            + res[i].OT_ID
+                            + res[i].id
                             + "</td><td class='data-edit regis-date' contenteditable='true'>"
-                            + dateRegistration
+                            + res[i].registrationDate
                             + "</td><td class='data-edit time-start' contenteditable='true'>"
-                            + res[i].Time_Start.Hours + ":" + res[i].Time_Start.Minutes + ":00"
+                            + res[i].timeStart
                             + "</td><td class='data-edit time-finish' contenteditable='true'>"
-                            + res[i].Time_Finish.Hours + ":" + res[i].Time_Finish.Minutes + ":00"
+                            + res[i].timeFinish
                             + "</td><td class='data-edit reason' contenteditable='true'>"
-                            + res[i].Reason
+                            + res[i].reason
                             + "</td><td class='not-edit'> "
-                            + res[i].Reason_For_Cancel
+                            + res[i].reasonForCancel
                             + "</td><td class='not-edit'>Chờ duyệt"
                             + "</td><td class='not-edit'>"
                             + "<a class='delete1' title='Delete1' data-target='#myModalAdd2' onclick='functionDelete1()'  class='btn btn-info btn-lg'  data-toggle='modal'><i class=' fas fa-trash' style='color: red;' /i></a></td></tr>";
 
                     } else {
                         var status;
-                        if (res[i].Status_flag == 1) {
+                        if (res[i].statusid == 1) {
                             status = "Đã duyệt";
-                        }
-                        else status = "bị hủy";
+                        } else status = "Bị hủy";
                         data += "<tr data-index='" + i + "'><td hidden>"
-                            + res[i].OT_ID
+                            + res[i].id
                             + "</td><td >"
-                            + dateRegistration
+                            + res[i].registrationDate
                             + "</td><td>"
-                            + res[i].Time_Start.Hours + ":" + res[i].Time_Start.Minutes + ":00"
+                            + res[i].timeStart
                             + "</td><td>"
-                            + res[i].Time_Finish.Hours + ":" + res[i].Time_Finish.Minutes + ":00"
+                            + res[i].timeFinish
                             + "</td><td>"
-                            + res[i].Reason
+                            + res[i].reason
                             + "</td><td>"
-                            + res[i].Reason_For_Cancel
+                            + res[i].reasonForCancel
                             + "</td><td>"
                             + status
                             + "</td><td></td></tr>";

@@ -9,38 +9,54 @@ Route::get('/', function () {
     return view('Login');
 });
 
-Route::get('getFormChange',function (){
-   return view('Login.ChangePassword');
+Route::get('getFormChange', function () {
+    return view('Login.ChangePassword');
 });
 
 Route::Post("Home", ['as' => 'Login', 'uses' => 'LoginController@Home']);
 
-Route::Get("Change","LoginController@ChangePW");
+Route::Get("Change", "LoginController@ChangePW");
 
 //Menu
 Route::get("getMenu", "MenuController@getMenu");
 
 //Salary
-Route::get("/Salary/AddOT",function (){
-   return view('Registration.AddOverTime');
+Route::get("/Salary/AddOT", function () {
+    return view('Registration.AddOverTime');
 });
-Route::get("/Salary/ConfirmOT",function (){
-   return view('Registration.ConfirmOT');
+Route::get("/Salary/ConfirmOT", function () {
+    return view('Registration.ConfirmOT');
 });
-Route::get("/Salary/TotalSalary",function (){
-   return view('Registration.TotalSalary');
+Route::get("/Salary/TotalSalary", function () {
+    return view('Registration.TotalSalary');
 });
-Route::get('/Employee/ListEmp',function (){
-   return view('Employee.ListEmployee');
+Route::get('/Employee/ListEmp', function () {
+    return view('Employee.ListEmployee');
 });
-Route::get('/Employee/Detail',function (){
-   return view('Employee.InforEmployee');
+Route::get('/Employee/Detail', function () {
+    return view('Employee.InforEmployee');
 });
 
+//Registration
+Route::get('/getRegistration', 'RegistrationController@getRegistration');
+Route::get('/addRegistrationDetail', 'RegistrationController@AddOverTime');
+Route::get('/editRegistrationDetail', 'RegistrationController@EditOverTime');
+Route::get('/deleteRegistration', 'RegistrationController@DeleteOverTime');
+Route::get('/PagingByMonthOverTime','RegistrationController@PagingByMonthOverTime');
+Route::get('/SearchOverTime','RegistrationController@SearchOverTime');
+
+//ConfirmOverTime
+Route::get('/getAllRegistration', 'ConfirmOverTimeController@getAllRegistration');
+Route::get('/RefuseRegistration','ConfirmOverTimeController@RefuseRegistration');
+Route::get('/SubmitRegistration','ConfirmOverTimeController@SubmitRegistration');
+Route::get('/SearchConfirm','ConfirmOverTimeController@SearchConfirm');
+Route::get('/PagingByMonthConfirm','ConfirmOverTimeController@PagingByMonthConfirm');
+
+
 // database
-Route::get("db",function (){
-   $data = Facades\DB::table('employee') -> get();
-   var_dump($data);
+Route::get("db", function () {
+    $data = Facades\DB::table('employee')->get();
+    var_dump($data);
 });
 
 //goi controller

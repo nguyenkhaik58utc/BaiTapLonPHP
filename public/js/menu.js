@@ -20,6 +20,9 @@ function checkId(arr, id) {
 }
 
 $(document).ready(function () {
+
+    $('#numberNoti').text(Math.floor(Math.random() * 11));
+
     $.ajax({
         type: 'GET',
         url: '/getMenu',
