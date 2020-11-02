@@ -9,6 +9,7 @@
     <title>Title</title>
     <script src="{{ URL::asset('js/lock.js') }}"></script>
     <script src="{{ URL::asset('js/menu.js') }}"></script>
+    <script src="{{ URL::asset('js/notification.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/lock.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/layout.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/menu.css') }}">
@@ -47,20 +48,22 @@
         <ul class="navbar-nav mr-auto ">
             <li>
                 <div style="margin-top: 25px;margin-left: 20px">
-                    <a href="#" class="notification">
-                        <span><img src="https://www.flaticon.com/svg/static/icons/svg/2645/2645897.svg" style="height: 40px;width: 30px"></span>
+                    <a data-target="#popupNotification" data-toggle='modal' onclick="getNotification()" class="notification">
+                        <span><img src="https://www.flaticon.com/svg/static/icons/svg/2645/2645897.svg"
+                                   style="height: 40px;width: 30px"></span>
                         <span class="badge" id="numberNoti"></span>
                     </a>
                 </div>
             </li>
         </ul>
-        <ul class="navbar-nav justify-content-end" style="float:right">
+        <ul class="navbar-nav justify-content-end" style="float:right;">
             <li>
                 <div id="vnclock" align="center" style="margin-right:20px; margin-top:10px "></div>
             </li>
             <li>
                 <a href="home">
-                    <img src="https://www.upsieutoc.com/images/2020/10/30/logoPage2.png" alt="logo2.png" border="0" style="height:100px" onclick="homePage()"/>
+                    <img src="https://www.upsieutoc.com/images/2020/10/30/logoPage2.png" alt="logo2.png" border="0"
+                         style="height:100px" onclick="homePage()"/>
                 </a>
             </li>
         </ul>
@@ -82,5 +85,21 @@
         });
     }
 </script>
+
+//popup notification
+<div id="popupNotification" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 align="center" class="modal-title">Danh sách thông báo</h2>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div id="dataNotification" style="font-size: 19px;max-height: 300px;overflow: auto;text-align: center">
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

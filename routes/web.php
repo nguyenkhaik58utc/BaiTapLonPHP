@@ -37,6 +37,10 @@ Route::get('/Employee/Detail', function () {
     return view('Employee.InforEmployee');
 });
 
+//notification
+Route::get('/getNotification','NotificationController@getNotification');
+Route::get('/setChecked','NotificationController@setChecked');
+
 //Registration
 Route::get('/getRegistration', 'RegistrationController@getRegistration');
 Route::get('/addRegistrationDetail', 'RegistrationController@AddOverTime');
@@ -61,6 +65,9 @@ Route::get('/getTitle','OganizationController@getTitle');
 Route::get('/getEmpByDepartment','OganizationController@getEmpByDepartment');
 Route::get('/getEmpByReady','OganizationController@getEmpByReady');
 Route::get('/getEmpByTitle','OganizationController@getEmpByTitle');
+Route::get('/Oganization/dashboard',function (){
+    return view('Oganization.Dashbroad');
+});
 
 // database
 Route::get("db", function () {

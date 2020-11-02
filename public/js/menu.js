@@ -21,7 +21,23 @@ function checkId(arr, id) {
 
 $(document).ready(function () {
 
-    $('#numberNoti').text(Math.floor(Math.random() * 11));
+    $
+        .ajax({
+            url: "/getNotification",
+            type: "Get",
+            success: function (data) {
+                var count = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i].isChecked == 0)
+                        count += 1;
+                }
+                $('#numberNoti').text( count.toString());
+            },
+            error: function () {
+                swal("Error", "Change Registration False", "error");
+            }
+
+        });
 
     $.ajax({
         type: 'GET',
@@ -40,19 +56,19 @@ $(document).ready(function () {
             for (var i = 0; i < data.length; i++) {
                 if (checkId(lstParentSort, data[i].id) == 1 && data[i].parentid == 0) {
                     db += "<div class='dropdown' style='margin-top: 1em'>\n" +
-                        "                    <button class='btn dropdown-toggle' style='color: white;background-color: #111' data-toggle='dropdown'>" + data[i].name +"\n" +
+                        "                    <button class='btn dropdown-toggle' style='color: white;background-color: #111' data-toggle='dropdown'>" + data[i].name + "\n" +
                         "                        <span class='caret'></span></button>\n" +
                         "                    <ul class='dropdown-menu' >\n";
-                    for(var j = 0; j < data.length ; j++){
-                        if(data[j].parentid == data[i].id){
-                            db += "<li><a tabindex='-1' href='"+ data[j].url +"' >"+ data[j].name +"</a></li>";
+                    for (var j = 0; j < data.length; j++) {
+                        if (data[j].parentid == data[i].id) {
+                            db += "<li><a tabindex='-1' href='" + data[j].url + "' >" + data[j].name + "</a></li>";
                         }
                     }
                     db += "    </ul>\n" +
                         "                </div>";
                 } else {
-                    if(checkId(lstParentSort, data[i].id) == 0 && data[i].parentid == 0){
-                        db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='"+ data[i].url +"'>"+ data[i].name +"</a>";
+                    if (checkId(lstParentSort, data[i].id) == 0 && data[i].parentid == 0) {
+                        db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='" + data[i].url + "'>" + data[i].name + "</a>";
                     }
                 }
             }

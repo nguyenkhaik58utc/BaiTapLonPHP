@@ -111,7 +111,7 @@ $(document).ready(function () {
                         db += "<li class='myLi'><a onclick='getEmpByDepartment(" + data[j].id + "," + data[j].parentid + ")'> " + data[j].nameDep + " </a></li>";
                         for (var cursor = 0; cursor < data.length; cursor++) {
                             if (data[cursor].id == data[j].id) {
-                                db += "<li style='margin-left: 60px'><a onclick='getEmpByTitle(" + data[cursor].idTitle + ")'> " + data[cursor].nameTitle + " </a></li>";
+                                db += "<li style='margin-left: 60px; font-size: 16px'><a onclick='getEmpByTitle(" + data[cursor].idTitle + ")'> " + data[cursor].nameTitle + " </a></li>";
                             }
                         }
                         break;

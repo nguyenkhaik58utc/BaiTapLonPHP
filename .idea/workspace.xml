@@ -20,12 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27a3b4f6-6c75-4508-a9dc-30b12c455ade" name="Default Changelist" comment="khai update login">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/OganizationController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ScrumController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/oganization.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/department.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Oganization/Oganization.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/chart.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/notification.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Oganization/Dashbroad.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/department.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/department.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Home/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Home/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Oganization/Oganization.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Oganization/Oganization.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -227,6 +230,7 @@
       <workItem from="1604131804436" duration="17439000" />
       <workItem from="1604204908596" duration="16290000" />
       <workItem from="1604297692516" duration="5311000" />
+      <workItem from="1604330196860" duration="10156000" />
     </task>
     <task id="LOCAL-00001" summary="khai update login">
       <created>1600658279830</created>

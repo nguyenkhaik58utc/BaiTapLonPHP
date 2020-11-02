@@ -11,7 +11,7 @@
 <h2>Cơ cấu tổ chức</h2>
 <div class="row">
     <div class="col-sm-3">
-        <div id="dataOganization"></div>
+        <div id="dataOganization" style="border-right: dashed"></div>
     </div>
     <div class="col-sm-9">
         <table class=" table order-list">
