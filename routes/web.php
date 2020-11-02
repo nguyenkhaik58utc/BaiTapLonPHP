@@ -52,6 +52,15 @@ Route::get('/SubmitRegistration','ConfirmOverTimeController@SubmitRegistration')
 Route::get('/SearchConfirm','ConfirmOverTimeController@SearchConfirm');
 Route::get('/PagingByMonthConfirm','ConfirmOverTimeController@PagingByMonthConfirm');
 
+//Oganization
+Route::get('/Oganization/Position',function (){
+   return view('Oganization.Oganization');
+});
+Route::get('/getDepartment','OganizationController@getDepartment');
+Route::get('/getTitle','OganizationController@getTitle');
+Route::get('/getEmpByDepartment','OganizationController@getEmpByDepartment');
+Route::get('/getEmpByReady','OganizationController@getEmpByReady');
+Route::get('/getEmpByTitle','OganizationController@getEmpByTitle');
 
 // database
 Route::get("db", function () {
@@ -59,12 +68,6 @@ Route::get("db", function () {
     var_dump($data);
 });
 
-//goi controller
-//Route::get("hello",'LoginController@Hello');
-//Route::get("Call/{ten}",'LoginController@getTen');
-//route::get('setCookie','LoginController@setCookie');
-//route::get('getCookie','LoginController@getCookie');
-//Route::get("Login","LoginController@Login");
 
 Route::get("database", function () {
     Schema::create('role', function ($table) {
