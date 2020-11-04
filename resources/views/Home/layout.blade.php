@@ -6,7 +6,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Phần mềm hỗ trợ quản lý hoạt động nghiệp vụ</title>
     <script src="{{ URL::asset('js/lock.js') }}"></script>
     <script src="{{ URL::asset('js/menu.js') }}"></script>
     <script src="{{ URL::asset('js/notification.js') }}"></script>

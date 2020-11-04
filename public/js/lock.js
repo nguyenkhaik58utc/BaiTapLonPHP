@@ -38,7 +38,7 @@ function showTime() {
 }
 
 $(document).ready(function () {
-    var heightSize = screen.height - 50;
+    var heightSize = screen.height - 150;
     document.getElementById("leftMain").style.minHeight = String(heightSize) + "px";
     document.getElementById("rightMain").style.minHeight = String(heightSize) + "px";
     $("#hide-side-bar").on("click", function () {

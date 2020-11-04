@@ -21,6 +21,22 @@ function checkId(arr, id) {
 
 $(document).ready(function () {
 
+    $.ajax({
+        type: 'GET',
+        url: '/getNumberBoy',
+        success: function (data) {
+            $('#numberBoy').text(data[0].number);
+        }
+    });
+
+    $.ajax({
+        type: 'GET',
+        url: '/getNumberGirl',
+        success: function (data) {
+            $('#numberGirl').text(data[0].number);
+        }
+    });
+
     $
         .ajax({
             url: "/getNotification",

@@ -4,6 +4,7 @@
     <!DOCTYPE html>
 <html>
 <head>
+    <title>Cơ cấu tổ chức</title>
     <script src="{{ URL::asset('js/department.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/oganization.css') }}">
 </head>

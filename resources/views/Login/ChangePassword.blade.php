@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Đổi mật khẩu</title>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/password.css') }}">
     <script src="{{ URL::asset('js/password.js') }}"></script>
 </head>

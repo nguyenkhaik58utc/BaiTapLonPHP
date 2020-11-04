@@ -36,6 +36,10 @@ Route::get('/Employee/ListEmp', function () {
 Route::get('/Employee/Detail', function () {
     return view('Employee.InforEmployee');
 });
+Route::get('/Salary/Timekeeping',function (){
+   return view('Registration.Timekeeping');
+});
+Route::get('/geDataTimeKeeping','SalaryController@geDataTimeKeeping');
 
 //notification
 Route::get('/getNotification','NotificationController@getNotification');
@@ -68,6 +72,8 @@ Route::get('/getEmpByTitle','OganizationController@getEmpByTitle');
 Route::get('/Oganization/dashboard',function (){
     return view('Oganization.Dashbroad');
 });
+Route::get('/getNumberBoy','OganizationController@getNumberBoy');
+Route::get('/getNumberGirl','OganizationController@getNumberGirl');
 
 // database
 Route::get("db", function () {

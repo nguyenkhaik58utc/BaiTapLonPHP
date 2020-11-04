@@ -138,3 +138,36 @@ function TinhLuong() {
     }
 
 }
+
+$(document).ready(function () {
+    $.ajax({
+        url: "/geDataTimeKeeping",
+        type: "Get",
+        success: function (data) {
+            var db = "";
+            for (var i = 0; i < data.length; i++) {
+                db += "<tr ><td hidden>"
+                    + data[i].id
+                    + "</td><td>"
+                    + data[i].timekeepingDate
+                    + "</td><td>"
+                    + data[i].timeStartAM
+                    + "</td><td>"
+                    + data[i].timeFinishAM
+                    + "</td><td>"
+                    + data[i].timeStartPM
+                    + "</td><td>"
+                    + data[i].timeFinishPM
+                    + "</td><td>"
+                    + data[i].timeStartOT
+                    + "</td><td>"
+                    + data[i].timeFinishOT
+                    + "</td></tr><hr>";
+            }
+            $('#dataTimeKeeping').html(db);
+        },
+        error: function () {
+            swal("Error", "Your imaginary file is safe :)", "error");
+        }
+    });
+});

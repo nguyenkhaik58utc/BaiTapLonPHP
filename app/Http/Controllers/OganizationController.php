@@ -13,6 +13,16 @@ class OganizationController extends Controller
         return $lstDep;
     }
 
+    public function getNumberBoy(){
+        $result = Db::select("SELECT count(sex) as number FROM `employee` WHERE sex = 0");
+        return $result;
+    }
+
+    public function getNumberGirl(){
+        $result = Db::select("SELECT count(sex) as number FROM `employee` WHERE sex = 1");
+        return $result;
+    }
+
     public function getTitle()
     {
         $lstMenu = DB::select("select title.id,title.name from title,departmentTitle where title.id = departmentTitle.titleid ");

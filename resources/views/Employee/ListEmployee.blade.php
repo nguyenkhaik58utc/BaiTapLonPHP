@@ -23,13 +23,6 @@
                         style="position: absolute; top: 0; right: 0; margin-top: 14px;">
 
 
-                        <li class="nav-item">
-                            <button type="button"
-                                    class='add editInfor btn-outline-primary btn btn-info'
-                                    onclick="EditTime()">
-                                Submit
-                            </button>
-                        </li>
                     </ul>
 
                 </div>
