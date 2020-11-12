@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Thông tin nhân viên</title>
+    <script src="{{ URL::asset('js/employee.js') }}"></script>
 </head>
 <body>
 
@@ -18,58 +19,56 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Họ tên</label>
                     <div class="col-lg-9">
-                        <input class="form-control" type="text" value="Jane"/>
+                        <input class="form-control" id="nameUser" type="text" value="Jane"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Tài khoản</label>
                     <div class="col-lg-9">
-                        <input class="form-control" type="text" value="Bishop" disabled/>
+                        <input class="form-control" id="accountUser" type="text" value="Bishop" disabled/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                     <div class="col-lg-9">
-                        <input class="form-control" type="email" value="email@gmail.com"/>
+                        <input class="form-control" type="email" id="emailUser" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Ngày sinh</label>
                     <div class="col-lg-9">
-                        <input class="form-control" type="date" value=""/>
+                        <input class="form-control" id="dateUser" type="date" value=""/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Giới tính</label>
                     <div class="col-lg-9">
-                        <input class="form-control" type="url" value=""/>
+                        <input class="form-control" id="sexUser" type="url" value=""/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Địa chỉ</label>
                     <div class="col-lg-9">
-                        <input class="form-control" type="text" value="" placeholder="Street"/>
+                        <input class="form-control" id="addressUser" type="text" value="" placeholder="Street"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" id="phoneUser" type="text"  placeholder="Street"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Phòng ban</label>
                     <div class="col-lg-9">
-                        <select name="cars" id="cars" style="width: 100px;height: 35px" class="form-control" >
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
+                        <select name="department" id="lstDepartment" style="width: 200px;height: 35px" class="form-control" >
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" id="formTitle" hidden>
                     <label class="col-lg-3 col-form-label form-control-label">Chức danh</label>
                     <div class="col-lg-9">
-                        <select name="cars" id="cars" style="width: 100px;height: 35px" class="form-control" >
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
+                        <select name="title" id="lstTitle" style="width: 200px;height: 35px" class="form-control" >
                         </select>
                     </div>
                 </div>

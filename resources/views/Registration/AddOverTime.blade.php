@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Đăng ký OverTime</title>
-    <script src="{{ URL::asset('js/Employee.js') }}"></script>
+    <script src="{{ URL::asset('js/Registration.js') }}"></script>
     <script src="{{ URL::asset('js/listEmployee.js') }}"></script>
 </head>
 <body>

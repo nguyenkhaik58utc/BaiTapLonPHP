@@ -41,7 +41,7 @@ function pagging(index) {
                         + res[i].department
                         + "</td><td>"
                         + "<a class='delete1' title='Delete1' data-target='#popupDelete' onclick='getIdEmp()'  class='btn btn-info btn-lg'  data-toggle='modal'><i class=' fas fa-trash' style='color: red;' /></a></td><td>"
-                        + "<a  id='update-employee' class='btn btn-lg' onclick='functionEditEmp()'><i class='fas fa-pencil-alt'></i></a></td></tr><hr>";
+                        + "<a  id='update-employee' class='btn btn-lg' onclick='functionEditEmp(" + res[i].employeeId + ")'><i class='fas fa-pencil-alt'></i></a></td></tr><hr>";
 
                 }
                 $("#listEmployee").append(employee);
@@ -52,6 +52,7 @@ function pagging(index) {
         });
 
 }
+
 $(document).on("click", ".page-number", function () {
     $(".dropdown-filter-dropdown").each(function () {
         $(this).remove();
@@ -134,6 +135,7 @@ function functionDeleteEmp() {
         }
     });
 }
+
 function numberPage(res) {
     $("#numberPagging").html("");
     if (Math.floor(res / 5) * 5 == res) {
@@ -184,26 +186,6 @@ function functionEditEmp(employeeId) {
     });
 };
 
-function ListRoleName() {
-    $.ajax({
-        url: "getAllRoleName",
-        type: "Get",
-        contentType: "application/json",
-
-        success: function (res) {
-            var data = "";
-            for (var i = 0; i < res.length; i++) {
-                data += "<option value='" + res[i].roleId + "'>"
-                    + res[i].roleName + "</option>";
-            }
-            $('#optionRoles').html(data);
-        },
-        error: function () {
-            alert("error listRoleName");
-        }
-    });
-}
-
 $(document).on("click", "#add-employee", function () {
     $("#employeeID").val("");
     $("#employeeName").val("");
@@ -233,24 +215,6 @@ $(document).on("click", "#update-employee", function () {
         $(this).removeClass("hide");
     });
     $("#myModal-update").modal("show");
-});
-//choose images
-$(document).on("click", "#prev-img", function () {
-    $("#choose-file").click();
-
-});
-//display image
-$("#choose-file").change(function () {
-    $("#btn-upload").click();
-});
-
-//image-defaul
-$("#sex").change(function () {
-    if ($(this).val() == "Nam") {
-        $("#prev-img").attr("src", $("#male-src").html());
-    } else {
-        $("#prev-img").attr("src", $("#female-src").html());
-    }
 });
 
 $(document).on("click", "#add-employee", function () {
@@ -316,7 +280,7 @@ $(document).on("click", "#submit-add-btn", function () {
                     timer: 800,
                     showConfirmButton: false
                 })
-            );
+                );
             window.setTimeout(function () {
                 location.reload();
             }, 800);
@@ -369,7 +333,7 @@ $(document).on("click", "#submit-update-btn", function () {
                     timer: 800,
                     showConfirmButton: false
                 })
-            );
+                );
             window.setTimeout(function () {
                 location.reload();
             }, 800);
@@ -408,49 +372,67 @@ function convertDate1(data) {
     return ConvDate.getDate() + "/" + month + "/" + ConvDate.getFullYear();
 }
 
-function getInfor () {
+$("#department").change(function () {
+    var id = $("#formTitle").val();
+    $("#formTitle").show();
     $
         .ajax({
-            url: "/Admin/Home/inforUserLogin",
+            url: "/getTitleById",
             type: "Get",
+            data: {
+                id: id
+            },
             success: function (res) {
-                var img = "";
-                img += "<center> "
-                    + " <img id = 'imageUserLogin' class='rounded-circle img-thumbnail imageEmployee' src = '" + res.Images + "' style = 'height:30% ; width : 40%; padding-top : 20px; margin-top : 20px' ></img>"
-                    + " <p style='color: #FFFFFF;margin-top : 10px; font-size: 24px;margin-bottom: 0px' id='nameUserLogin'>" + res.Employee_Name + "</p>"
-                    + " <p style='color: #FFFFFF;margin-top : 10px; font-size: 24px;margin-bottom: 0px' id='departmentUserLogin'> "
-                    + " <h7 style=' color: #FFFFFF; font-size: 24px'>Thông Tin Cá Nhân</h7>"
-                    + "</center>";
-                $('#imgEmp').html(img);
-                var data = "";
-                var split1 = res.Date_Of_Birth.split("(");
-                var split2 = split1[1].split(")");
-                var date = convertDate1(split2[0]);
-                data += "<tbody><tr><th scope='row'><i class='fas fa-user-circle'></i></th>"
-                    + "<td contenteditable='true'>"
-                    + res.User_emp
-                    + "</td></tr><tr><th scope='row'><i class='far fa-calendar-alt'></i></th>"
-                    + "<td contenteditable='true'>"
-                    + date
-                    + "</td></tr><tr><th scope='row'><i class='fas fa-male'></i></th>"
-                    + "<td contenteditable='true'>"
-                    + res.Sex
-                    + "</td></tr> <tr><th scope='row'><i class='fas fa-phone-alt'></i></th>"
-                    + "<td contenteditable='true'>"
-                    + res.Phone_Number
-                    + "</td></tr><tr><th scope='row'><i class='far fa-envelope'></i></th>"
-                    + "<td contenteditable='true'>"
-                    + res.Email_Address
-                    + "</td></tr><tr><th scope='row'><i class='fas fa-map-marker-alt'></i></th>"
-                    + "<td contenteditable='true'>"
-                    + res.Address_emp
-                    + "</td></tr></tbody>";
-                $('#inforEmployee').html(data);
+                data = "";
+                for (var i = 0; i < res.length; i++) {
+                    data += "<option value='" + res[i].id + "'>" + res[i].name + " </option>"
+                }
+                $("#lstRole").html(data);
             },
             error: function () {
-                alert("error getInfor");
+                alert("error get Role");
             }
         });
+});
 
+$(document).ready(function () {
+/*
+    $
+        .ajax({
+            url: "/getAllRole",
+            type: "Get",
+            success: function (res) {
+                data = "";
+                for (var i = 0; i < res.length; i++) {
+                    data += "<option value='" + res[i].id + "'>" + res[i].name + " </option>"
+                }
+                $("#lstRole").html(data);
+                $("#lstRole").val("");
+            },
+            error: function () {
+                alert("error get Role");
+            }
+        });*/
 
-};
+    $.ajax({
+        url: "/getAllEmployee",
+        method: "Get",
+        success: function (res) {
+            data = "";
+            for (var i = 0; i < res.length; i++) {
+                data += " <tr><td>"
+                    + res[i].id +
+                    "</td><td>"
+                    + res[i].nameEmp +
+                    "</td><td>"
+                    + res[i].nameEmp +
+                    "</td><td>" +
+                    "<a title='Delete1' data-target='#popupDelete' onclick='getIdEmp()' class='btn btn-info btn-lg' data-toggle='modal'><i class='delete1 fas fa-trash'  style='color: red;'></i></a>" +
+                    "</td><td>" +
+                    "<a id='update-employee' class='btn btn-info btn-lg' onclick='functionEditEmp(1)'><i class='fas fa-pencil-alt'></i></a>" +
+                    "</td></tr>";
+            }
+            $("#listEmployee").html(data);
+        }
+    });
+});

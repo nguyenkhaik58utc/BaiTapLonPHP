@@ -115,8 +115,8 @@ function TinhLuong() {
         var timeStartOT = arrayCur[i][7];
         var timeFinishOT = arrayCur[i][8];
         $.ajax({
-            url: "/Admin/TinhLuong/getSalary",
-            type: "POST",
+            url: "/updateSalary",
+            type: "Get",
             data: {
                 Time_id: Time_id,
                 Employee_Id: Employee_Id,

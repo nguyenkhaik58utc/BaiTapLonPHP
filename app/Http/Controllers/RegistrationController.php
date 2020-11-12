@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use mysql_xdevapi\Exception;
 
 class RegistrationController extends Controller
 {
@@ -25,32 +26,36 @@ class RegistrationController extends Controller
         $reason = $request->LyDo;
         $id = Session::get('id');
         DB::table('registrationDetail')->insert(['registrationDate' => $date, 'timeStart' => $timeStart, 'timeFinish' => $timeFinish, 'reason' => $reason, 'userId' => $id, 'reasonForCancel' => 'null', 'statusId' => 3, 'isDelete' => 0]);
-        $result = DB::select("select * from registrationdetail where registrationDate = $date and timeStart = $timeStart and timeFinish = $timeFinish and userId = $id and isDelete = 0");
-        if ($result != null)
-            return true;
-        else
-            return false;
+        return true;
     }
 
     public function EditOverTime(Request $request)
     {
-        $OtId = $request->OtId;
-        $date = $request->NgayDangKy;
-        $timeStart = $request->TGBatDau;
-        $timeFinish = $request->TGKetThuc;
-        $reason = $request->LyDo;
-        DB::table('registrationDetail')->where('id', $OtId)->update(['registrationDate' => $date, 'timeStart' => $timeStart, 'timeFinish' => $timeFinish, 'reason' => $reason]);
+        try {
+            $OtId = $request->OtId;
+            $date = $request->NgayDangKy;
+            $timeStart = $request->TGBatDau;
+            $timeFinish = $request->TGKetThuc;
+            $reason = $request->LyDo;
+            DB::table('registrationDetail')->where('id', $OtId)->update(['registrationDate' => $date, 'timeStart' => $timeStart, 'timeFinish' => $timeFinish, 'reason' => $reason]);
 
-        return true;
+            return true;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function DeleteOverTime(Request $request)
     {
-        $otId = $request->otId;
-        $reasonForCancel = $request->LyDoHuy;
-        DB::table('registrationDetail')->where('id', $otId)->update(['reasonForCancel' => $reasonForCancel, 'isDelete' => 1]);
+        try {
+            $otId = $request->otId;
+            $reasonForCancel = $request->LyDoHuy;
+            DB::table('registrationDetail')->where('id', $otId)->update(['reasonForCancel' => $reasonForCancel, 'isDelete' => 1]);
 
-        return true;
+            return true;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function PagingByMonthOverTime(Request $request)

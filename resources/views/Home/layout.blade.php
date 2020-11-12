@@ -62,8 +62,8 @@
             </li>
             <li>
                 <a href="home">
-                    <img src="https://www.upsieutoc.com/images/2020/10/30/logoPage2.png" alt="logo2.png" border="0"
-                         style="height:100px" onclick="homePage()"/>
+                    <img src="/img/logoKdas.png" alt="logo2.png" border="0"
+                         style="height:100px; width: 170px" onclick="homePage()"/>
                 </a>
             </li>
         </ul>

@@ -20,22 +20,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27a3b4f6-6c75-4508-a9dc-30b12c455ade" name="Default Changelist" comment="khai update login">
-      <change afterPath="$PROJECT_DIR$/resources/views/Registration/Timekeeping.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/Scrum.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/49899087_279230109413490_377876763209891840_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/iDAS-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/idas-kit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/logoKdas.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/logoKdas2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/scrum1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/Registration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Login/LoginPage.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Scrum/Scrum.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OganizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OganizationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RegistrationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalaryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalaryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/chart.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/chart.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/department.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/department.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/lock.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/Employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/listEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/listEmployee.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/totalSalary.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/totalSalary.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Employee/InforEmployee.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/InforEmployee.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Employee/ListEmployee.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/ListEmployee.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Home/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Home/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Login/ChangePassword.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Login/ChangePassword.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Oganization/Dashbroad.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Oganization/Dashbroad.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Oganization/Oganization.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Oganization/Oganization.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Registration/TotalSalary.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Registration/TotalSalary.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Registration/AddOverTime.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Registration/AddOverTime.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -241,6 +252,15 @@
       <workItem from="1604389378548" duration="626000" />
       <workItem from="1604415730563" duration="9507000" />
       <workItem from="1604461767893" duration="4349000" />
+      <workItem from="1604470736036" duration="4955000" />
+      <workItem from="1604556374782" duration="7000" />
+      <workItem from="1604597881881" duration="314000" />
+      <workItem from="1604648922173" duration="5289000" />
+      <workItem from="1604892148237" duration="4555000" />
+      <workItem from="1604903055182" duration="4399000" />
+      <workItem from="1605000905250" duration="1268000" />
+      <workItem from="1605075543305" duration="2164000" />
+      <workItem from="1605170726294" duration="5437000" />
     </task>
     <task id="LOCAL-00001" summary="khai update login">
       <created>1600658279830</created>

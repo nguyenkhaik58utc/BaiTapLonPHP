@@ -89,7 +89,7 @@ $(document).ready(function () {
                 }
             }
             db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='/getFormChange'>Đổi mật khẩu</a><br>";
-            db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='http://localhost:8000/'>Đăng xuất</a>";
+            db += "<a class='btn dropdown-toggle' style='margin-top: 1em;color: white;background-color: #111' tabindex='-1' href='/logout'>Đăng xuất</a>";
 
             $('#dataMenu').html(db);
         }

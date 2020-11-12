@@ -9,8 +9,26 @@ Route::get('/', function () {
     return view('Login');
 });
 
+Route::get('/logout',function (){
+   Facades\Session::flush();
+   return view('Login');
+});
+
+Route::get('/login2', function () {
+    return view('Login.LoginPage');
+});
+Route::get('/scrum', function () {
+    if (Facades\Session::get("id") != null)
+        return view('Scrum.Scrum');
+    else
+        return view('Login');
+});
+
 Route::get('getFormChange', function () {
-    return view('Login.ChangePassword');
+    if (Facades\Session::get("id") != null)
+        return view('Login.ChangePassword');
+    else
+        return view('Login');
 });
 
 Route::Post("Home", ['as' => 'Login', 'uses' => 'LoginController@Home']);
@@ -22,58 +40,92 @@ Route::get("getMenu", "MenuController@getMenu");
 
 //Salary
 Route::get("/Salary/AddOT", function () {
-    return view('Registration.AddOverTime');
+    if (Facades\Session::get("id") != null)
+        return view('Registration.AddOverTime');
+    else
+        return view('Login');
 });
 Route::get("/Salary/ConfirmOT", function () {
-    return view('Registration.ConfirmOT');
+    if (Facades\Session::get("id") != null)
+        return view('Registration.ConfirmOT');
+    else
+        return view('Login');
 });
 Route::get("/Salary/TotalSalary", function () {
-    return view('Registration.TotalSalary');
+    if (Facades\Session::get("id") != null)
+        return view('Registration.TotalSalary');
+    else
+        return view('Login');
 });
 Route::get('/Employee/ListEmp', function () {
-    return view('Employee.ListEmployee');
+    if (Facades\Session::get("id") != null)
+        return view('Employee.ListEmployee');
+    else
+        return view('Login');
 });
 Route::get('/Employee/Detail', function () {
-    return view('Employee.InforEmployee');
+    if (Facades\Session::get("id") != null)
+        return view('Employee.InforEmployee');
+    else
+        return view('Login');
 });
-Route::get('/Salary/Timekeeping',function (){
-   return view('Registration.Timekeeping');
+Route::get('/getInformation', 'EmployeeController@getInformation');
+Route::get('/Salary/Timekeeping', function () {
+    if (Facades\Session::get("id") != null)
+        return view('Registration.Timekeeping');
+    else
+        return view('Login');
 });
-Route::get('/geDataTimeKeeping','SalaryController@geDataTimeKeeping');
+Route::get('/geDataTimeKeeping', 'SalaryController@geDataTimeKeeping');
+Route::get('/updateSalary', 'SalaryController@updateSalary');
 
 //notification
-Route::get('/getNotification','NotificationController@getNotification');
-Route::get('/setChecked','NotificationController@setChecked');
+Route::get('/getNotification', 'NotificationController@getNotification');
+Route::get('/setChecked', 'NotificationController@setChecked');
 
 //Registration
 Route::get('/getRegistration', 'RegistrationController@getRegistration');
 Route::get('/addRegistrationDetail', 'RegistrationController@AddOverTime');
 Route::get('/editRegistrationDetail', 'RegistrationController@EditOverTime');
 Route::get('/deleteRegistration', 'RegistrationController@DeleteOverTime');
-Route::get('/PagingByMonthOverTime','RegistrationController@PagingByMonthOverTime');
-Route::get('/SearchOverTime','RegistrationController@SearchOverTime');
+Route::get('/PagingByMonthOverTime', 'RegistrationController@PagingByMonthOverTime');
+Route::get('/SearchOverTime', 'RegistrationController@SearchOverTime');
 
 //ConfirmOverTime
 Route::get('/getAllRegistration', 'ConfirmOverTimeController@getAllRegistration');
-Route::get('/RefuseRegistration','ConfirmOverTimeController@RefuseRegistration');
-Route::get('/SubmitRegistration','ConfirmOverTimeController@SubmitRegistration');
-Route::get('/SearchConfirm','ConfirmOverTimeController@SearchConfirm');
-Route::get('/PagingByMonthConfirm','ConfirmOverTimeController@PagingByMonthConfirm');
+Route::get('/RefuseRegistration', 'ConfirmOverTimeController@RefuseRegistration');
+Route::get('/SubmitRegistration', 'ConfirmOverTimeController@SubmitRegistration');
+Route::get('/SearchConfirm', 'ConfirmOverTimeController@SearchConfirm');
+Route::get('/PagingByMonthConfirm', 'ConfirmOverTimeController@PagingByMonthConfirm');
+
+//Employee
+Route::get('/getAllEmployee', 'EmployeeController@getAllEmployee');
+Route::get('/getAllRole','EmployeeController@getAllRole');
+
 
 //Oganization
-Route::get('/Oganization/Position',function (){
-   return view('Oganization.Oganization');
+Route::get('/Oganization/Position', function () {
+    if (Facades\Session::get("id") != null)
+        return view('Oganization.Oganization');
+    else
+        return view('Login');
 });
-Route::get('/getDepartment','OganizationController@getDepartment');
-Route::get('/getTitle','OganizationController@getTitle');
-Route::get('/getEmpByDepartment','OganizationController@getEmpByDepartment');
-Route::get('/getEmpByReady','OganizationController@getEmpByReady');
-Route::get('/getEmpByTitle','OganizationController@getEmpByTitle');
-Route::get('/Oganization/dashboard',function (){
-    return view('Oganization.Dashbroad');
+Route::get('/getDepartment', 'OganizationController@getDepartment');
+Route::get('/getTitle', 'OganizationController@getTitle');
+Route::get('/getEmpByDepartment', 'OganizationController@getEmpByDepartment');
+Route::get('/getEmpByReady', 'OganizationController@getEmpByReady');
+Route::get('/getEmpByTitle', 'OganizationController@getEmpByTitle');
+Route::get('/Oganization/dashboard', function () {
+    if (Facades\Session::get("id") != null)
+        return view('Oganization.Dashbroad');
+    else
+        return view('Login');
 });
-Route::get('/getNumberBoy','OganizationController@getNumberBoy');
-Route::get('/getNumberGirl','OganizationController@getNumberGirl');
+Route::get('/getNumberBoy', 'OganizationController@getNumberBoy');
+Route::get('/getNumberGirl', 'OganizationController@getNumberGirl');
+Route::get('/getAllDepartment', 'OganizationController@getAllDepartment');
+Route::get('/getAllTitle', 'OganizationController@getAllTitle');
+Route::get('/getTitleById',"OganizationController@getTitleById");
 
 // database
 Route::get("db", function () {

@@ -55,4 +55,17 @@ class OganizationController extends Controller
         return $lstDepartment;
 
     }
+    public function getAllDepartment(){
+        $result = DB::select("select * from department where parentid != 0");
+        return $result;
+    }
+    public function getAllTitle(){
+        $result = DB::select("select * from title ");
+        return $result;
+    }
+    public function getTitleById(Request $request){
+        $id = $request ->id;
+        $result = DB::select("select title.idTitle,title.nameTitle from title,departmentTitle where title.idTitle = departmentTitle.titleId and departmenttitle.depId = $id");
+        return $result;
+    }
 }

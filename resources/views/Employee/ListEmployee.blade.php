@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Danh sách nhân viên</title>
-    <script src="{{ URL::asset('js/Employee.js') }}"></script>
     <script src="{{ URL::asset('js/listEmployee.js') }}"></script>
 </head>
 <body>
@@ -45,28 +44,8 @@
                 <th>Sửa</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="listEmployee">
 
-            <tr>
-                <td>
-                    @item.Employee_ID
-                </td>
-                <td>
-                    @item.Employee_Name
-                </td>
-                <td>
-                    @item.Department
-                </td>
-                <td>
-                    <a title="Delete1" data-target="#popupDelete" onclick="getIdEmp()"
-                       class='btn btn-info btn-lg' data-toggle='modal'><i class="delete1 fas fa-trash"
-                                                                          style="color: red;"></i></a>
-                </td>
-                <td>
-                    <a id="update-employee" class="btn btn-info btn-lg"
-                       onclick="functionEditEmp(1)"><i class="fas fa-pencil-alt"></i></a>
-                </td>
-            </tr>
             </tbody>
         </table>
     </div>
@@ -107,7 +86,7 @@
 
                 </h2>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" hidden>
                 <form method="post" id="insert_form">
                     <input type="number" name="employeeId" id="employeeId"
                            class="form-control" readonly/>
@@ -138,54 +117,45 @@
                 </h4>
             </div>
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-4 center" style="padding-left: 36px;padding-top: 7px;">
-                    <form id="form-upload" action="do-upload" method="post"
-                          enctype="multipart/form-data">
-                        <input id="choose-file" name="avaImage" type="file" style="display: none;">
-                        <input id="btn-upload" type="button" value="Submit" style="display: none;">
-                    </form>
-                    <div style="width: 8em; height: 8em; border: 1px solid black">
-                        <img style="width: 8em; height: 8em" id="prev-img" alt=""
-                             src="~/images/image-defaul/male.jpg">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-8 center">
-                    <form action="#" method="POST" accept-charset="UTF-8">
 
-                        <input class="form-control form-control-lg" type="text"
-                               placeholder="ID" name="employeeID" id="employeeID"
-                               style="height: 2em; border-radius: 2em; margin-top: 0.3em; display: none;">
-                        <input style="display: none" id="ava-upload" name="images">
-                        <input class="form-control form-control-lg" type="text"
-                               placeholder="Họ và tên" name="employeeName" id="employeeName"
-                               style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                        <input class="form-control form-control-lg" type="text"
-                               placeholder="Tên đăng nhập" name="userEmp" id="userEmp"
-                               style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                        <input class="form-control form-control-lg" type="text"
-                               placeholder="Chức Vụ" name="department" id="department"
-                               style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                        <input class="form-control form-control-lg" type="date"
-                               placeholder="Ngày Sinh" name="dateOfBirth" id="dateOfBirth"
-                               style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                        <select class="form-control"
-                                style="border-radius: 2em; margin-top: 0.3em;" id="sex">
-                            <option value="Nam">Nam</option>
-                            <option value="Nữ">Nữ</option>
-                        </select> <input class="form-control form-control-lg" type="text"
-                                         placeholder="Đại chỉ" name="addressEmp" id="addressEmp"
-                                         style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                        <input class="form-control form-control-lg" type="text"
-                               placeholder="Email" name="emailAddress" id="emailAddress"
-                               style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                        <input class="form-control form-control-lg" type="text"
-                               placeholder="Số DT" name="phoneNumber" id="phoneNumber"
-                               style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                        @Html.Action("getRoles", "Home")
+            <div class=" center">
+                <form action="#" method="POST" accept-charset="UTF-8">
 
-                    </form>
-                </div>
+                    <input class="form-control form-control-lg" type="text"
+                           placeholder="ID" name="employeeID" id="employeeID"
+                           style="height: 2em; border-radius: 2em; margin-top: 0.3em; display: none;">
+                    <input style="display: none" id="ava-upload" name="images">
+                    <input class="form-control form-control-lg" type="text"
+                           placeholder="Họ và tên" name="employeeName" id="employeeName"
+                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
+                    <input class="form-control form-control-lg" type="text"
+                           placeholder="Tên đăng nhập" name="userEmp" id="userEmp"
+                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
+                    <input class="form-control form-control-lg" type="text"
+                           placeholder="Chức Vụ" name="department" id="department"
+                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
+                    <input class="form-control form-control-lg" type="date"
+                           placeholder="Ngày Sinh" name="dateOfBirth" id="dateOfBirth"
+                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
+                    <select class="form-control"
+                            style="border-radius: 2em; margin-top: 0.3em;" id="sex">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                    </select> <input class="form-control form-control-lg" type="text"
+                                     placeholder="Đại chỉ" name="addressEmp" id="addressEmp"
+                                     style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
+                    <input class="form-control form-control-lg" type="text"
+                           placeholder="Email" name="emailAddress" id="emailAddress"
+                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
+                    <input class="form-control form-control-lg" type="text"
+                           placeholder="Số DT" name="phoneNumber" id="phoneNumber"
+                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
+                    <select name="lstRole" id="lstRole" style="width: 100%" hidden
+                            class="form-control form-control-lg"
+                            style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
+                    </select>
+
+                </form>
             </div>
 
             <div class="modal-footer" style="justify-content: center">
