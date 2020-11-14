@@ -37,10 +37,8 @@ class LoginController extends Controller
         return $request->cookie('hello');
     }
     public function Home(Request $request){
-        $pw = base64_encode($request -> password);
-        $user = $request -> username;
-
-        $a = DB::table('employee') ->get();
+        $pw = base64_encode($request -> pw);
+        $user = $request -> user;
         $result = DB::select("select * from employee where userEmp = '".$user."' and password = '".$pw."'");
         if($result != null){
             Session::put("id",$result[0] -> id);
@@ -52,7 +50,7 @@ class LoginController extends Controller
             Session::put("userEmp",$result[0] -> userEmp);
             return view('Home.layout');
         }
-        else return view('/Login');
+        else return view('Login.LoginPage');
 
     }
 }

@@ -6,76 +6,85 @@ use Illuminate\Support\Facades;
 
 //Login
 Route::get('/', function () {
-    return view('Login');
-});
-
-Route::get('/logout',function (){
-   Facades\Session::flush();
-   return view('Login');
-});
-
-Route::get('/login2', function () {
     return view('Login.LoginPage');
 });
+
+Route::get('/logout', function () {
+    Facades\Session::flush();
+    return view('Login.LoginPage');
+});
+Route::get('/Home', function () {
+    return view('Home.layout');
+});
+
+
 Route::get('/scrum', function () {
     if (Facades\Session::get("id") != null)
         return view('Scrum.Scrum');
     else
-        return view('Login');
+        return view('Login.LoginPage');
 });
 
-Route::get('getFormChange', function () {
+Route::get('/getFormChange', function () {
     if (Facades\Session::get("id") != null)
         return view('Login.ChangePassword');
     else
-        return view('Login');
+        return view('Login.LoginPage');
 });
 
-Route::Post("Home", ['as' => 'Login', 'uses' => 'LoginController@Home']);
+Route::Get("/getHome", 'LoginController@Home');
 
-Route::Get("Change", "LoginController@ChangePW");
+Route::Get("/Change", "LoginController@ChangePW");
 
 //Menu
-Route::get("getMenu", "MenuController@getMenu");
+Route::get("/getMenu", "MenuController@getMenu");
 
 //Salary
 Route::get("/Salary/AddOT", function () {
     if (Facades\Session::get("id") != null)
         return view('Registration.AddOverTime');
     else
-        return view('Login');
+        return view('Login.LoginPage');
 });
 Route::get("/Salary/ConfirmOT", function () {
     if (Facades\Session::get("id") != null)
         return view('Registration.ConfirmOT');
     else
-        return view('Login');
+        return view('Login.LoginPage');
 });
 Route::get("/Salary/TotalSalary", function () {
     if (Facades\Session::get("id") != null)
         return view('Registration.TotalSalary');
     else
-        return view('Login');
+        return view('Login.LoginPage');
 });
 Route::get('/Employee/ListEmp', function () {
     if (Facades\Session::get("id") != null)
         return view('Employee.ListEmployee');
     else
-        return view('Login');
+        return view('Login.LoginPage');
 });
 Route::get('/Employee/Detail', function () {
     if (Facades\Session::get("id") != null)
         return view('Employee.InforEmployee');
     else
-        return view('Login');
+        return view('Login.LoginPage');
 });
 Route::get('/getInformation', 'EmployeeController@getInformation');
 Route::get('/Salary/Timekeeping', function () {
     if (Facades\Session::get("id") != null)
         return view('Registration.Timekeeping');
     else
-        return view('Login');
+        return view('Login.LoginPage');
 });
+
+Route::get('/Salary/SalaryNumber', function () {
+    if (Facades\Session::get("id") != null)
+        return view('Registration.ViewSalary');
+    else
+        return view('Login.LoginPage');
+});
+Route::get('/sumSalary','SalaryController@sumSalary');
 Route::get('/geDataTimeKeeping', 'SalaryController@geDataTimeKeeping');
 Route::get('/updateSalary', 'SalaryController@updateSalary');
 
@@ -100,7 +109,8 @@ Route::get('/PagingByMonthConfirm', 'ConfirmOverTimeController@PagingByMonthConf
 
 //Employee
 Route::get('/getAllEmployee', 'EmployeeController@getAllEmployee');
-Route::get('/getAllRole','EmployeeController@getAllRole');
+Route::get('/getAllRole', 'EmployeeController@getAllRole');
+Route::get('/Employee/ChangeInformation', 'EmployeeController@changeInformation');
 
 
 //Oganization
@@ -125,7 +135,7 @@ Route::get('/getNumberBoy', 'OganizationController@getNumberBoy');
 Route::get('/getNumberGirl', 'OganizationController@getNumberGirl');
 Route::get('/getAllDepartment', 'OganizationController@getAllDepartment');
 Route::get('/getAllTitle', 'OganizationController@getAllTitle');
-Route::get('/getTitleById',"OganizationController@getTitleById");
+Route::get('/getTitleById', "OganizationController@getTitleById");
 
 // database
 Route::get("db", function () {

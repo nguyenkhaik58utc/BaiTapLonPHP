@@ -63,15 +63,6 @@
                 </div>
             </nav>
         </div>
-
-        <!--<div class="col-md-3">
-            <ul class="pagination" >
-                <li class="page-item previous"><a class="page-link ">Previous</a></li>
-                <li class="page-item"><a class="page-link page-number">1</a></li>
-                <li class="page-item"><a class="page-link page-number">2</a></li>
-                <li class="page-item next"><a class="page-link">Next</a></li>
-            </ul>
-        </div> -->
     </div>
 </div>
 

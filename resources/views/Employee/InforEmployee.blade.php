@@ -40,10 +40,13 @@
                         <input class="form-control" id="dateUser" type="date" value=""/>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" id="formSex">
                     <label class="col-lg-3 col-form-label form-control-label">Giới tính</label>
                     <div class="col-lg-9">
-                        <input class="form-control" id="sexUser" type="url" value=""/>
+                        <select id="sexUser" style="width: 200px;height: 35px" class="form-control" >
+                            <option value="0">Nam</option>
+                            <option value="1">Nữ</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -61,27 +64,26 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Phòng ban</label>
                     <div class="col-lg-9">
-                        <select name="department" id="lstDepartment" style="width: 200px;height: 35px" class="form-control" >
-                        </select>
+                        <input class="form-control" id="departmentUser" type="text"  placeholder="Street" disabled/>
+
                     </div>
                 </div>
-                <div class="form-group row" id="formTitle" hidden>
+                <div class="form-group row" id="formTitle">
                     <label class="col-lg-3 col-form-label form-control-label">Chức danh</label>
                     <div class="col-lg-9">
-                        <select name="title" id="lstTitle" style="width: 200px;height: 35px" class="form-control" >
-                        </select>
+                        <input class="form-control" id="titleUser" type="text"  placeholder="Street" disabled/>
+
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-9 ml-auto text-right">
-                        <input type="reset" class="btn btn-outline-secondary" value="Cancel"/>
-                        <input type="button" class="btn btn-primary" value="Save Changes"/>
+                        <button class="btn btn-primary" onclick="changeInformation()">Save Change</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="col-ml-3 text-center">
-            <img src="//api.adorable.io/avatars/120/trickst3r.png" class="mx-auto img-fluid rounded-circle"
+            <img src="" id="imgAvatar" class="mx-auto img-fluid rounded-circle" style="width: 170px;height: 240px"
                  alt="avatar"/>
             <h6 class="my-4">Upload a new photo</h6>
             <input type="file"  id="inputGroupFile02">
