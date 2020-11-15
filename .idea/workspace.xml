@@ -20,17 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27a3b4f6-6c75-4508-a9dc-30b12c455ade" name="Default Changelist" comment="khai update login">
-      <change afterPath="$PROJECT_DIR$/public/js/numberSalary.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Registration/ViewSalary.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RegistrationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SalaryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SalaryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/Employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/listEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/listEmployee.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/totalSalary.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/totalSalary.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Employee/InforEmployee.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/InforEmployee.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Employee/ListEmployee.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/ListEmployee.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Login/LoginPage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Login/LoginPage.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Oganization/Dashbroad.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Oganization/Dashbroad.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -251,6 +252,7 @@
       <workItem from="1605252819845" duration="3577000" />
       <workItem from="1605290259261" duration="4787000" />
       <workItem from="1605321358884" duration="7842000" />
+      <workItem from="1605371473318" duration="18428000" />
     </task>
     <task id="LOCAL-00001" summary="khai update login">
       <created>1600658279830</created>
@@ -327,6 +329,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600658286250" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1605375659960">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1605375659960" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605423589110">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1605423589110" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

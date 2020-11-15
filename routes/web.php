@@ -111,6 +111,10 @@ Route::get('/PagingByMonthConfirm', 'ConfirmOverTimeController@PagingByMonthConf
 Route::get('/getAllEmployee', 'EmployeeController@getAllEmployee');
 Route::get('/getAllRole', 'EmployeeController@getAllRole');
 Route::get('/Employee/ChangeInformation', 'EmployeeController@changeInformation');
+Route::get('/getEmpForUpdate','EmployeeController@getEmpForUpdate');
+Route::get('/deleteEmployee','EmployeeController@deleteEmployee');
+Route::get('/addEmployee','EmployeeController@addEmployee');
+Route::get('/updateEmployee','EmployeeController@updateEmployee');
 
 
 //Oganization

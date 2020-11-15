@@ -1,11 +1,8 @@
-
-
 $(function () {
     $('#excelfile').on('change', function () {
         ExportToTable();
     });
 });
-
 
 
 function ExportToTable() {
@@ -23,10 +20,9 @@ function ExportToTable() {
                 var data = e.target.result;
                 /*Converts the excel data in to object*/
                 if (xlsxflag) {
-                    var workbook = XLSX.read(data, { type: 'binary' });
-                }
-                else {
-                    var workbook = XLS.read(data, { type: 'binary' });
+                    var workbook = XLSX.read(data, {type: 'binary'});
+                } else {
+                    var workbook = XLS.read(data, {type: 'binary'});
                 }
                 /*Gets all the sheetnames of excel in to a variable*/
                 var sheet_name_list = workbook.SheetNames;
@@ -36,8 +32,7 @@ function ExportToTable() {
                     /*Convert the cell value to Json*/
                     if (xlsxflag) {
                         var exceljson = XLSX.utils.sheet_to_json(workbook.Sheets[y]);
-                    }
-                    else {
+                    } else {
                         var exceljson = XLS.utils.sheet_to_row_object_array(workbook.Sheets[y]);
                     }
                     if (exceljson.length > 0 && cnt == 0) {
@@ -49,19 +44,17 @@ function ExportToTable() {
             }
             if (xlsxflag) {/*If excel file is .xlsx extension than creates a Array Buffer from excel*/
                 reader.readAsArrayBuffer($("#excelfile")[0].files[0]);
-            }
-            else {
+            } else {
                 reader.readAsBinaryString($("#excelfile")[0].files[0]);
             }
-        }
-        else {
+        } else {
             alert("Sorry! Your browser does not support HTML5!");
         }
-    }
-    else {
+    } else {
         alert("Please upload a valid Excel file!");
     }
 }
+
 function BindTable(jsondata, tableid) {/*Function used to convert the JSON array to Html Table*/
     var columns = BindTableHeader(jsondata, tableid); /*Gets all the column headings of Excel*/
     for (var i = 0; i < jsondata.length; i++) {
@@ -75,6 +68,7 @@ function BindTable(jsondata, tableid) {/*Function used to convert the JSON array
         $(tableid).append(row$);
     }
 }
+
 function BindTableHeader(jsondata, tableid) {/*Function used to get all column names from JSON and bind the html table header*/
     var columnSet = [];
     var headerTr$ = $('<tr/>');
@@ -140,9 +134,29 @@ function TinhLuong() {
 }
 
 $(document).ready(function () {
+
+    var current = new Date();
+    var month = current.getMonth() + 1;
+    var year = current.getFullYear();
+    document.getElementById("start").value = year + "-" + month;
+
+    getDataTimekeeping(month,year);
+
+    $("#start").change(function () {
+        var x = document.getElementById("start").value;
+        var time = x.split("-");
+        getDataTimekeeping(time[1],time[0]);
+    });
+});
+
+function getDataTimekeeping(month, year) {
     $.ajax({
         url: "/geDataTimeKeeping",
         type: "Get",
+        data: {
+            month: month,
+            year: year
+        },
         success: function (data) {
             var db = "";
             for (var i = 0; i < data.length; i++) {
@@ -170,4 +184,4 @@ $(document).ready(function () {
             swal("Error", "Your imaginary file is safe :)", "error");
         }
     });
-});
+}

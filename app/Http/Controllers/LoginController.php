@@ -39,8 +39,8 @@ class LoginController extends Controller
     public function Home(Request $request){
         $pw = base64_encode($request -> pw);
         $user = $request -> user;
-        $result = DB::select("select * from employee where userEmp = '".$user."' and password = '".$pw."'");
-        if($result != null){
+        $result = DB::select("select * from employee where userEmp = '$user' and password = '$pw'");
+        if(count($result) != 0){
             Session::put("id",$result[0] -> id);
             Session::put("departmentId",$result[0] -> departmentid);
             Session::put("email",$result[0] -> email);
@@ -48,9 +48,9 @@ class LoginController extends Controller
             Session::put("password",base64_encode($request -> password));
             Session::put("roleId",$result[0] -> roleId);
             Session::put("userEmp",$result[0] -> userEmp);
-            return view('Home.layout');
+            return $result;
         }
-        else return view('Login.LoginPage');
+        else return $result;
 
     }
 }

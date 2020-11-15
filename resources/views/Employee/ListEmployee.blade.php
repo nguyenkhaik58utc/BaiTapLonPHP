@@ -110,43 +110,86 @@
 
 
             <div class=" center">
-                <form action="#" method="POST" accept-charset="UTF-8">
+                <div class="row">
+                    <form role="form">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Họ tên</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" id="nameEmp" type="text" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Tài khoản</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" id="accountEmp" type="text"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Email</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="email" id="emailEmp"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Ngày sinh</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" id="dateEmp" type="date" value=""/>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="formSexEmp">
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Giới tính</label>
+                            <div class="col-lg-8">
+                                <select id="sexEmp" style="width: 200px;height: 35px" class="form-control">
+                                    <option value="0">Nam</option>
+                                    <option value="1">Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Địa chỉ</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" id="addressEmp" type="text" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Số điện thoại</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" id="phoneEmp" type="text" />
+                            </div>
+                        </div>
+                        <div class="form-group row" id="formRole">
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Phân quyền</label>
+                            <div class="col-lg-8">
+                                <select id="lstRole" class="form-control">
+                                    <option value="1">Nhân viên</option>
+                                    <option value="2">Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="formDepartment">
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Phòng ban</label>
+                            <div class="col-lg-8">
+                                <select id="lstDepartment" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="formTitle" hidden>
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Chức danh</label>
+                            <div class="col-lg-8">
+                                <select id="lstTitle" class="form-control">
+                                </select>
 
-                    <input class="form-control form-control-lg" type="text"
-                           placeholder="ID" name="employeeID" id="employeeID"
-                           style="height: 2em; border-radius: 2em; margin-top: 0.3em; display: none;">
-                    <input style="display: none" id="ava-upload" name="images">
-                    <input class="form-control form-control-lg" type="text"
-                           placeholder="Họ và tên" name="employeeName" id="employeeName"
-                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                    <input class="form-control form-control-lg" type="text"
-                           placeholder="Tên đăng nhập" name="userEmp" id="userEmp"
-                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                    <input class="form-control form-control-lg" type="text"
-                           placeholder="Chức Vụ" name="department" id="department"
-                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                    <input class="form-control form-control-lg" type="date"
-                           placeholder="Ngày Sinh" name="dateOfBirth" id="dateOfBirth"
-                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                    <select class="form-control"
-                            style="border-radius: 2em; margin-top: 0.3em;" id="sex">
-                        <option value="Nam">Nam</option>
-                        <option value="Nữ">Nữ</option>
-                    </select> <input class="form-control form-control-lg" type="text"
-                                     placeholder="Đại chỉ" name="addressEmp" id="addressEmp"
-                                     style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                    <input class="form-control form-control-lg" type="text"
-                           placeholder="Email" name="emailAddress" id="emailAddress"
-                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                    <input class="form-control form-control-lg" type="text"
-                           placeholder="Số DT" name="phoneNumber" id="phoneNumber"
-                           style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                    <select name="lstRole" id="lstRole" style="width: 100%" hidden
-                            class="form-control form-control-lg"
-                            style="height: 2em; border-radius: 2em; margin-top: 0.3em;">
-                    </select>
-
-                </form>
+                            </div>
+                        </div>
+                        <p id="checkNUll" style="color: red;margin-left: 50px"></p>
+                        <div class="form-group row" hidden>
+                            <label class="col-lg-3 col-form-label form-control-label" style="padding-left: 50px">Chức danh</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" id="IdEmp" type="text" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div class="modal-footer" style="justify-content: center">
@@ -169,10 +212,6 @@
             </div>
         </div>
     </div>
-</div>
-<div style="display: none;">
-    <div id="male-src"><%=request.getContextPath()%>/images/image-defaul/male.jpg</div>
-    <div id="female-src"><%=request.getContextPath()%>/images/image-defaul/female.png</div>
 </div>
 
 </body>

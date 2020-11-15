@@ -311,7 +311,6 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                                             arrAddr[i][1].css("color", "red");
                                             arrAddr[i][2].css("color", "red");
                                         }
-                                        console.log(arrAddr[i][0].html());
                                         check = 0;
                                         return false;
                                     }
@@ -445,20 +444,20 @@ function editTime() {
                             LyDo: arrayEdit[i][4],
                         },
                         success: function (data) {
-                            if (checkClick == 0) {
-                                localStorage.setItem("swal",
-                                    swal({
-                                        title: "Success!",
-                                        text: "Message sent",
-                                        type: "success",
-                                        timer: 800,
-                                        showConfirmButton: false
-                                    })
+
+                            localStorage.setItem("swal",
+                                swal({
+                                    title: "Success!",
+                                    text: "Message sent",
+                                    type: "success",
+                                    timer: 800,
+                                    showConfirmButton: false
+                                })
                                 );
-                                window.setTimeout(function () {
-                                    location.reload();
-                                }, 800);
-                            }
+                            window.setTimeout(function () {
+                                location.reload();
+                            }, 800);
+
                         },
                         error: function () {
                             swal("Error", "Change Registration False", "error");
@@ -533,7 +532,7 @@ function addTime() {
                             timer: 800,
                             showConfirmButton: false
                         })
-                    );
+                        );
                     window.setTimeout(function () {
                         location.reload();
                     }, 800);
@@ -588,7 +587,7 @@ function functionDelete() {
                         timer: 800,
                         showConfirmButton: false
                     })
-                );
+                    );
             }, 800);
 
         },

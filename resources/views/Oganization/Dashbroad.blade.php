@@ -17,64 +17,6 @@
 
 <body>
 
-<div class="chartngang" style="margin-top: 30px; margin-left: 30px; display: flex;">
-    <div
-        style="width: 450px; height: 100px; background-color: white;  border-radius: 3px ; border: 1px solid gray; margin-right: 30px;">
-
-        <div class="row">
-            <div class="col-sm-6" style="display: flex;">
-                <div style="margin-left: 20px;margin-top: 20px"><img src="https://www.upsieutoc.com/images/2020/11/03/boy.png" style="width: 50px;height: 50px" alt="boy.png" border="0" /></div>
-            </div>
-            <div class="col-sm-6">
-                <p style="font-size: 15px; margin-top: 20px;font-weight: bold;">Nam</p>
-                <div id="numberBoy" style="color: rgb(15, 197, 15); "></div>
-            </div>
-        </div>
-    </div>
-    <div
-        style="width: 450px; height: 100px; background-color: white;  border-radius: 3px ; border: 1px solid gray; margin-right: 30px;">
-
-        <div class="row">
-            <div class="col-sm-6" style="display: flex;">
-                <div style="margin-left: 20px;margin-top: 20px"><img src="https://www.upsieutoc.com/images/2020/11/03/girl.png" style="width: 50px;height: 50px" alt="boy.png" border="0" /></div>
-            </div>
-            <div class="col-sm-6">
-                <p style="font-size: 15px; margin-top: 20px;font-weight: bold;">Nữ</p>
-                <div id="numberGirl" style="color: magenta;"></div>
-            </div>
-        </div>
-    </div>
-    <div
-        style="width: 450px; height: 100px; background-color: white;  border-radius: 3px ; border: 1px solid gray; margin-right: 30px;">
-        <p style="font-size: 15px; margin-top: 15px; margin-left: 30px; font-weight: bold;">Unique Visitor</p>
-        <div class="row">
-            <div class="col-sm-8" style="display: flex;">
-                <i class="fas fa-signal"
-                   style=" font-size: 25px; color: lightseagreen; margin-left: 30px; padding-top: 8px;"></i>
-                <div style=" margin-top: 10px; margin-left: 2px;"><i class="fas fa-align-right"
-                                                                     style=" font-size: 25px; color:lightseagreen; transform: rotate(90deg);"></i></div>
-            </div>
-            <div class="col-sm-4">
-                <div class="sophantram" style="color: indigo;">~12%</div>
-            </div>
-        </div>
-    </div>
-    <div
-        style="width: 450px; height: 100px; background-color: white;  border-radius: 3px ; border: 1px solid gray; margin-right: 30px;">
-        <p style="font-size: 15px; margin-top: 15px; margin-left: 30px; font-weight: bold;">Brounce Rate</p>
-        <div class="row">
-            <div class="col-sm-8" style="display: flex;">
-                <i class="fas fa-signal"
-                   style=" font-size: 25px; color:red; margin-left: 30px; padding-top: 8px;"></i>
-                <div style=" margin-top: 10px; margin-left: 2px;"><i class="fas fa-align-right"
-                                                                     style=" font-size: 25px; color: red; transform: rotate(90deg);"></i></div>
-            </div>
-            <div class="col-sm-4">
-                <div class="sophantram" style="color: blue;">33%</div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="chart" style="display: flex;">
     <div style="margin-top: 30px; margin-left: 30px; border: 1px solid gray;">
         <div id="piechart"></div>
@@ -99,7 +41,7 @@
                     ['tester', 2],
                     ['comtor', 2]
                 ]);
-                var options = { 'font-size' : 20,'title': 'Thống kê theo chức danh', 'width': 500,'height': 450 };
+                var options = { 'font-size' : 20,'title': 'Thống kê theo chức danh', 'width': 500,'height': 550 };
                 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
                 chart.draw(data, options);
             }
@@ -110,16 +52,13 @@
             <div class="col-sm-6">
                 <div
                     style="width: 315px; height: 100px;  background-color: white;  border-radius: 3px ; border: 1px solid gray;margin-left: 30px">
-                    <p style="font-size: 15px; margin-top: 15px; margin-left: 30px; font-weight: bold;">Total Visits</p>
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col-sm-8" style="display: flex;">
-                            <i class="fas fa-signal"
-                               style=" font-size: 25px; color: rgb(15, 197, 15); margin-left: 30px; padding-top: 8px;"></i>
-                            <div style=" margin-top: 10px; margin-left: 2px;"><i class="fas fa-align-right"
-                                                                                 style=" font-size: 25px; color: rgb(15, 197, 15); transform: rotate(90deg);"></i></div>
+                    <div class="row">
+                        <div class="col-sm-6" style="display: flex;">
+                            <div style="margin-left: 20px;margin-top: 20px"><img src="https://www.upsieutoc.com/images/2020/11/03/boy.png" style="width: 50px;height: 50px" alt="boy.png" border="0" /></div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="sophantram" style="color: rgb(15, 197, 15); ">+10%</div>
+                        <div class="col-sm-6">
+                            <p style="font-size: 15px; margin-top: 20px;font-weight: bold;">Nam</p>
+                            <div id="numberBoy" style="color: rgb(15, 197, 15); "></div>
                         </div>
                     </div>
                 </div>
@@ -127,16 +66,13 @@
             <div class="col-sm-6">
                 <div
                     style="width: 315px; height: 100px; background-color: white;  border-radius: 3px ; border: 1px solid gray;">
-                    <p style="font-size: 15px; margin-top: 15px; margin-left: 30px; font-weight: bold;">Total Visits</p>
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col-sm-8" style="display: flex;">
-                            <i class="fas fa-signal"
-                               style=" font-size: 25px; color: rgb(15, 197, 15); margin-left: 30px; padding-top: 8px;"></i>
-                            <div style=" margin-top: 10px; margin-left: 2px;"><i class="fas fa-align-right"
-                                                                                 style=" font-size: 25px; color: rgb(15, 197, 15); transform: rotate(90deg);"></i></div>
+                    <div class="row">
+                        <div class="col-sm-6" style="display: flex;">
+                            <div style="margin-left: 20px;margin-top: 20px"><img src="https://www.upsieutoc.com/images/2020/11/03/girl.png" style="width: 50px;height: 50px" alt="boy.png" border="0" /></div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="sophantram" style="color: rgb(15, 197, 15); ">+10%</div>
+                        <div class="col-sm-6">
+                            <p style="font-size: 15px; margin-top: 20px;font-weight: bold;">Nữ</p>
+                            <div id="numberGirl" style="color: magenta;"></div>
                         </div>
                     </div>
                 </div>
@@ -156,7 +92,7 @@
                         ['Business unit 2', 7]
                     ]);
 
-                    var options = { 'font-size' : 15, 'title': 'Thống kê theo phòng ban', 'width': 640, 'height': 320 };
+                    var options = { 'font-size' : 15, 'title': 'Thống kê theo phòng ban', 'width': 640, 'height': 420 };
                     var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
                     chart.draw(data, options);
                 }

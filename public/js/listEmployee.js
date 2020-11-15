@@ -108,30 +108,34 @@ function functionDeleteEmp() {
     document.getElementById("tableEmployee").deleteRow(row + 1);
     arrayEmp.splice(row, 1);
     $.ajax({
-        url: "/Admin/Home/deleteEmployee",
-        type: "POST",
+        url: "/deleteEmployee",
+        type: "Get",
         data: {
-            employeeId: employeeId,
+            id: employeeId,
         },
         success: function (data) {
-            numberEmp--;
-            numberPage(numberEmp);
-            window.setTimeout(function () {
-                localStorage.setItem("swal", swal({
-                    title: "Success!",
-                    text: "Message sent",
-                    type: "success",
-                    timer: 800,
-                    showConfirmButton: false
-                }));
-            }, 800);
-            window.setTimeout(function () {
-                location.reload();
-            }, 800);
+            if (data == true) {
+                numberEmp--;
+                numberPage(numberEmp);
+                window.setTimeout(function () {
+                    localStorage.setItem("swal", swal({
+                        title: "Success!",
+                        text: "Message sent",
+                        type: "success",
+                        timer: 800,
+                        showConfirmButton: false
+                    }));
+                }, 800);
+                window.setTimeout(function () {
+                    location.reload();
+                }, 800);
+            } else {
+                swal("Error", "Delete Employee Faile ??", "error");
+            }
 
         },
         error: function () {
-            swal("Error", "Your imaginary file is safe ??", "error");
+            swal("Error", "Delete Employee Faile ??", "error");
         }
     });
 }
@@ -160,23 +164,29 @@ function numberPage(res) {
 
 function functionEditEmp(employeeId) {
     $.ajax({
-        url: '/Admin/Home/getEmpForUpdate' + '?employeeId=' + employeeId,
+        url: "/getEmpForUpdate",
         type: "Get",
-        data: '',
+        data: {
+            id: employeeId
+        },
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
-        success: function (data) {
-            $("#employeeID").val(data.Employee_ID);
-            $("#employeeName").val(data.Employee_Name);
-            $("#userEmp").val(data.User_emp);
-            $("#department").val(data.Department);
-            $("#dateOfBirth").val(data.Date_Of_Birth);
-            $("#sex").val(data.Sex);
-            $("#addressEmp").val(data.Address_emp);
-            $("#emailAddress").val(data.Email_Address);
-            $("#phoneNumber").val(data.Phone_Number);
-            $("#optionRoles").val(data.roleName == 'Admin' ? 1 : 2);
-            $("#prev-img").attr("src", data.images);
+        success: function (res) {
+            $('#IdEmp').val(res[0].id);
+            $('#formTitle').show();
+            $('#nameEmp').val(res[0].nameEmp);
+            $('#accountEmp').val(res[0].userEmp);
+            $('#emailEmp').val(res[0].email);
+            $('#dateEmp').val(res[0].birthday);
+            if (res[0].sex == 0)
+                $('#formSexEmp').val("Nam");
+            else
+                $('#formSexEmp').val("Nữ");
+            $('#addressEmp').val(res[0].address);
+            $('#phoneEmp').val(res[0].phone);
+            $('#formDepartment').val(res[0].nameDep);
+            $('#formTitle').val(res[0].nameTitle);
+            $('#formRole').val(res[0].name);
 
         },
         error: function () {
@@ -187,17 +197,6 @@ function functionEditEmp(employeeId) {
 };
 
 $(document).on("click", "#add-employee", function () {
-    $("#employeeID").val("");
-    $("#employeeName").val("");
-    $("#userEmp").val("");
-    $("#passwordEmp").val("");
-    $("#department").val("");
-    $("#dateOfBirth").val("");
-    $("#sex").val("Nam");
-    $("#addressEmp").val("");
-    $("#emailAddress").val("");
-    $("#phoneNumber").val("");
-    $("#optionRoles").val(1);
     $(".for-update").each(function () {
         $(this).addClass("hide");
     });
@@ -218,18 +217,6 @@ $(document).on("click", "#update-employee", function () {
 });
 
 $(document).on("click", "#add-employee", function () {
-    $("#employeeID").val("");
-    $("#employeeName").val("");
-    $("#userEmp").val("");
-    $("#passwordEmp").val("");
-    $("#department").val("");
-    $("#dateOfBirth").val("");
-    $("#sex").val("Nam");
-    $("#addressEmp").val("");
-    $("#emailAddress").val("");
-    $("#phoneNumber").val("");
-    $("#optionRoles").val(1);
-    $("#prev-img").attr("src", $("#male-src").html());
     $(".for-update").each(function () {
         $(this).addClass("hide");
     });
@@ -242,128 +229,145 @@ $(document).on("click", "#add-employee", function () {
 
 //submit add
 $(document).on("click", "#submit-add-btn", function () {
-    var employeeName = document.getElementById("employeeName").value;
-    var userEmp = document.getElementById("userEmp").value;
-    var department = document.getElementById("department").value;
-    var dateOfBirth = document.getElementById("dateOfBirth").value;
-    var images = $("#prev-img").attr("src");
-    var e = document.getElementById("sex");
-    var sex = e.options[e.selectedIndex].value;
+    var employeeName = document.getElementById("nameEmp").value;
+    var userEmp = document.getElementById("accountEmp").value;
+    var department = $('#lstDepartment').val();
+    var title = $('#lstTitle').val();
+    var dateOfBirth = document.getElementById("dateEmp").value;
+    var sex = $('#sexEmp').val();
 
     var addressEmp = document.getElementById("addressEmp").value;
-    var emailAddress = document.getElementById("emailAddress").value;
-    var phoneNumber = document.getElementById("phoneNumber").value;
+    var emailAddress = document.getElementById("emailEmp").value;
+    var phoneNumber = document.getElementById("phoneEmp").value;
+    var optionRoles = $('#lstRole').val();
+    if (employeeName == "") {
+        $('#checkNUll').text("Hãy nhập họ tên")
+    } else {
+        if (userEmp == "") {
+            $('#checkNUll').text("Hãy nhập tài khoản");
+        } else {
+            if (department == "") {
+                $('#checkNUll').text("Hãy chọn phòng ban");
+            } else {
+                if (title == "") {
+                    $('#checkNUll').text("Hãy chọn chức danh");
+                } else {
+                    if (optionRoles == "") {
+                        $('#checkNUll').text("chọn phân quyền");
+                    } else {
+                        $.ajax({
+                            url: "/addEmployee",
+                            type: "Get",
+                            data: {
+                                employeeName: employeeName,
+                                userEmp: userEmp,
+                                department: department,
+                                title: title,
+                                dateOfBirth: dateOfBirth,
+                                sex: sex,
+                                addressEmp: addressEmp,
+                                emailAddress: emailAddress,
+                                phoneNumber: phoneNumber,
+                                optionRoles: optionRoles,
+                            },
+                            success: function (data) {
+                                localStorage.setItem("swal",
+                                    swal({
+                                        title: "Success!",
+                                        text: "Message sent",
+                                        type: "success",
+                                        timer: 800,
+                                        showConfirmButton: false
+                                    })
+                                    );
+                                window.setTimeout(function () {
+                                    location.reload();
+                                }, 800);
+                            },
+                            error: function () {
+                                swal("Error", "Your imaginary file is safe ??", "error");
 
-    var a = document.getElementById("optionRoles");
-    var optionRoles = a.options[e.selectedIndex].value;
-    $.ajax({
-        url: "/Admin/Home/addEmployee",
-        type: "Post",
-        data: {
-            employeeName: employeeName,
-            userEmp: userEmp,
-            images: images,
-            department: department,
-            dateOfBirth: dateOfBirth,
-            sex: sex,
-            addressEmp: addressEmp,
-            emailAddress: emailAddress,
-            phoneNumber: phoneNumber,
-            optionRoles: optionRoles,
-        },
-        success: function (data) {
-            localStorage.setItem("swal",
-                swal({
-                    title: "Success!",
-                    text: "Message sent",
-                    type: "success",
-                    timer: 800,
-                    showConfirmButton: false
-                })
-                );
-            window.setTimeout(function () {
-                location.reload();
-            }, 800);
-        },
-        error: function () {
-            swal("Error", "Your imaginary file is safe ??", "error");
+                            }
 
+                        });
+                    }
+                }
+            }
         }
-
-    });
+    }
 });
 //submit update
 $(document).on("click", "#submit-update-btn", function () {
-    var employeeID = document.getElementById("employeeID").value;
-    var employeeName = document.getElementById("employeeName").value;
-    var userEmp = document.getElementById("userEmp").value;
-    var department = document.getElementById("department").value;
-    var dateOfBirth = document.getElementById("dateOfBirth").value;
-    var images = $("#prev-img").attr("src");
-    var e = document.getElementById("sex");
-    var sex = e.options[e.selectedIndex].value;
+    var idEmp = document.getElementById("IdEmp").value;
+    var employeeName = document.getElementById("nameEmp").value;
+    var userEmp = document.getElementById("accountEmp").value;
+    var department = $('#lstDepartment').val();
+    var title = $('#lstTitle').val();
+    var dateOfBirth = document.getElementById("dateEmp").value;
+    var sex = $('#sexEmp').val();
 
     var addressEmp = document.getElementById("addressEmp").value;
-    var emailAddress = document.getElementById("emailAddress").value;
-    var phoneNumber = document.getElementById("phoneNumber").value;
+    var emailAddress = document.getElementById("emailEmp").value;
+    var phoneNumber = document.getElementById("phoneEmp").value;
+    var optionRoles = $('#lstRole').val();
+    if (employeeName == "") {
+        $('#checkNUll').text("hãy nhập họ tên");
+    } else {
+        if (userEmp == "") {
+            $('#checkNUll').text("Hãy nhập tài khoản");
+        } else {
+            if (department == "") {
+                $('#checkNUll').text("Hãy chọn phòng ban");
+            } else {
+                if (title == "") {
+                    $('#checkNUll').text("Hãy chọn chức danh");
+                } else {
+                    if (optionRoles == "") {
+                        $('#checkNUll').text("chọn phân quyền");
+                    } else {
+                        $.ajax({
+                            url: "/updateEmployee",
+                            type: "Get",
+                            data: {
+                                id: idEmp,
+                                employeeName: employeeName,
+                                userEmp: userEmp,
+                                department: department,
+                                title: title,
+                                dateOfBirth: dateOfBirth,
+                                sex: sex,
+                                addressEmp: addressEmp,
+                                emailAddress: emailAddress,
+                                phoneNumber: phoneNumber,
+                                optionRoles: optionRoles,
+                            },
+                            success: function (data) {
+                                localStorage.setItem("swal",
+                                    swal({
+                                        title: "Success!",
+                                        text: "Message sent",
+                                        type: "success",
+                                        timer: 800,
+                                        showConfirmButton: false
+                                    })
+                                    );
+                                window.setTimeout(function () {
+                                    location.reload();
+                                }, 800);
+                            },
+                            error: function () {
+                                swal("Error", "Your imaginary file is safe ??", "error");
 
-    var optionRoles = $("#optionRoles").val();
-    $.ajax({
-        url: '/Admin/Home/updateEmployee',
-        type: 'Post',
-        data: {
-            employeeID: employeeID,
-            employeeName: employeeName,
-            userEmp: userEmp,
-            images: images,
-            department: department,
-            dateOfBirth: dateOfBirth,
-            sex: sex,
-            addressEmp: addressEmp,
-            emailAddress: emailAddress,
-            phoneNumber: phoneNumber,
-            optionRoles: optionRoles,
-        },
-        success: function (data) {
-            localStorage.setItem("swal",
-                swal({
-                    title: "Success!",
-                    text: "Edit Employee Configuration",
-                    type: "success",
-                    timer: 800,
-                    showConfirmButton: false
-                })
-                );
-            window.setTimeout(function () {
-                location.reload();
-            }, 800);
-        },
-        error: function () {
-            swal("Error", "Edit Employee faile ??", "error");
+                            }
 
+                        });
+                    }
+                }
+            }
         }
-
-    });
-});
-$(document).on("click", "#btn-upload", function () {
-    console.log($("#form-upload")[0]);
-    formData = new FormData($("#form-upload")[0]);
-    $.ajax({
-        url: "do-upload",
-        method: "post",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (fileUrl) {
-            $("#prev-img").attr("src", fileUrl);
-            $("#ava-upload").val(fileUrl);
-        }
-    });
+    }
 });
 
-function exportExcelEmp() {
-    $("#btn-download").parent().submit();
-}
 
 function convertDate1(data) {
     var getdate = parseInt(data.replace("/Date(", "").replace(")/", ""));
@@ -396,7 +400,7 @@ $("#department").change(function () {
 });
 
 $(document).ready(function () {
-/*
+
     $
         .ajax({
             url: "/getAllRole",
@@ -412,7 +416,7 @@ $(document).ready(function () {
             error: function () {
                 alert("error get Role");
             }
-        });*/
+        });
 
     $.ajax({
         url: "/getAllEmployee",
@@ -425,14 +429,77 @@ $(document).ready(function () {
                     "</td><td>"
                     + res[i].nameEmp +
                     "</td><td>"
-                    + res[i].nameEmp +
+                    + res[i].nameDep +
                     "</td><td>" +
                     "<a title='Delete1' data-target='#popupDelete' onclick='getIdEmp()' class='btn btn-info btn-lg' data-toggle='modal'><i class='delete1 fas fa-trash'  style='color: red;'></i></a>" +
                     "</td><td>" +
-                    "<a id='update-employee' class='btn btn-info btn-lg' onclick='functionEditEmp(1)'><i class='fas fa-pencil-alt'></i></a>" +
+                    "<a id='update-employee' class='btn btn-info btn-lg' onclick='functionEditEmp(" + res[i].id + ")'><i class='fas fa-pencil-alt'></i></a>" +
                     "</td></tr>";
             }
             $("#listEmployee").html(data);
         }
     });
+
+
+    $
+        .ajax({
+            url: "/getAllDepartment",
+            type: "Get",
+            success: function (res) {
+                data = "";
+                for (var i = 0; i < res.length; i++) {
+                    data += "<option value='" + res[i].id + "'>" + res[i].nameDep + " </option>"
+                }
+                $("#lstDepartment").html(data);
+                $("#lstDepartment").val("");
+            },
+            error: function () {
+                alert("error get department");
+            }
+        });
+
+    // $
+    //     .ajax({
+    //         url: "/getAllTitle",
+    //         type: "Get",
+    //         success: function (res) {
+    //             data = "";
+    //             for (var i = 0; i < res.length; i++) {
+    //                 data += "<option value='" + res[i].idTitle + "'>" + res[i].nameTitle + " </option>"
+    //             }
+    //             $("#title").html(data);
+    //         },
+    //         error: function () {
+    //             alert("error get title");
+    //         }
+    //     });
+
+    $("#lstDepartment").change(function () {
+        var id = $("#lstDepartment").val();
+        $('#formTitle').show();
+        $
+            .ajax({
+                url: "/getTitleById",
+                type: "Get",
+                data: {
+                    id: id
+                },
+                success: function (res) {
+                    data = "";
+                    for (var i = 0; i < res.length; i++) {
+                        data += "<option value='" + res[i].idTitle + "'>" + res[i].nameTitle + " </option>"
+                    }
+                    $("#lstTitle").html(data);
+                    $("#lstTitle").val("");
+                },
+                error: function () {
+                    alert("error get Title");
+                }
+            });
+    });
+
+    $("#cancle-btn").click(function () {
+        $('#formTitle').hide();
+    });
+
 });

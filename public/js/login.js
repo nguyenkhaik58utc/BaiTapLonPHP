@@ -23,12 +23,16 @@ function login() {
                     pw: pw
                 },
                 success: function (data) {
-                    window.location.href = "http://localhost:8000/Home"
+                    if (data.length != 0)
+                        window.location.href = "http://localhost:8000/Home";
+                    else swal("Error", "User Or Password False", "error");
                 },
                 error: function () {
                     swal("Error", "User Or Password False", "error");
                 }
 
             });
+    } else {
+        $("#calculator").css('color', 'red');
     }
 }

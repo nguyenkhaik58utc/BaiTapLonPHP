@@ -23,66 +23,9 @@ $(document).ready(function () {
             }
         });
 
-
-
-    //
-    // $
-    //     .ajax({
-    //         url: "/getAllDepartment",
-    //         type: "Get",
-    //         success: function (res) {
-    //             data = "";
-    //             for (var i = 0; i < res.length; i++) {
-    //                 data += "<option value='" + res[i].id + "'>" + res[i].nameDep + " </option>"
-    //             }
-    //             $("#lstDepartment").html(data);
-    //         },
-    //         error: function () {
-    //             alert("error get department");
-    //         }
-    //     });
-    //
-    // $
-    //     .ajax({
-    //         url: "/getAllTitle",
-    //         type: "Get",
-    //         success: function (res) {
-    //             data = "";
-    //             for (var i = 0; i < res.length; i++) {
-    //                 data += "<option value='" + res[i].idTitle + "'>" + res[i].nameTitle + " </option>"
-    //             }
-    //             $("#title").html(data);
-    //         },
-    //         error: function () {
-    //             alert("error get title");
-    //         }
-    //     });
-    //
-    // $("#lstDepartment").change(function () {
-    //     var id = $("#lstDepartment").val();
-    //     $('#formTitle').show();
-    //     $
-    //         .ajax({
-    //             url: "/getTitleByIdbas",
-    //             type: "Get",
-    //             data: {
-    //                 id: id
-    //             },
-    //             success: function (res) {
-    //                 data = "";
-    //                 for (var i = 0; i < res.length; i++) {
-    //                     data += "<option value='" + res[i].idTitle + "'>" + res[i].nameTitle + " </option>"
-    //                 }
-    //                 $("#lstTitle").html(data);
-    //             },
-    //             error: function () {
-    //                 alert("error get Title");
-    //             }
-    //         });
-    // });
 });
 
-function changeInformation(){
+function changeInformation() {
     var employeeName = document.getElementById("nameUser").value;
     var userEmp = document.getElementById("accountUser").value;
     var emailEmp = document.getElementById("emailUser").value;
@@ -91,38 +34,44 @@ function changeInformation(){
 
     var addressEmp = document.getElementById("addressUser").value;
     var phoneNumber = document.getElementById("phoneUser").value;
-    $.ajax({
-        url: "/Employee/ChangeInformation",
-        type: "Get",
-        data: {
-            employeeName: employeeName,
-            userEmp: userEmp,
-            dateOfBirth: dateOfBirth,
-            sex: sex,
-            addressEmp: addressEmp,
-            emailAddress: emailEmp,
-            phoneNumber: phoneNumber,
-        },
-        success: function (data) {
-            localStorage.setItem("swal",
-                swal({
-                    title: "Success!",
-                    text: "Message sent",
-                    type: "success",
-                    timer: 800,
-                    showConfirmButton: false
-                })
-                );
-            window.setTimeout(function () {
-                location.reload();
-            }, 800);
-        },
-        error: function () {
-            swal("Error", "Your imaginary file is safe ??", "error");
 
-        }
+    if (employeeName != "") {
 
-    });
+        $.ajax({
+            url: "/Employee/ChangeInformation",
+            type: "Get",
+            data: {
+                employeeName: employeeName,
+                userEmp: userEmp,
+                dateOfBirth: dateOfBirth,
+                sex: sex,
+                addressEmp: addressEmp,
+                emailAddress: emailEmp,
+                phoneNumber: phoneNumber,
+            },
+            success: function (data) {
+                localStorage.setItem("swal",
+                    swal({
+                        title: "Success!",
+                        text: "Message sent",
+                        type: "success",
+                        timer: 800,
+                        showConfirmButton: false
+                    })
+                    );
+                window.setTimeout(function () {
+                    location.reload();
+                }, 800);
+            },
+            error: function () {
+                swal("Error", "Your imaginary file is safe ??", "error");
+
+            }
+
+        });
+    } else
+        $('#checkInfor').text("Hãy nhập họ tên");
+
 }
 
 

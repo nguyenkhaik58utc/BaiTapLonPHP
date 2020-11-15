@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Session;
 
 class SalaryController extends Controller
 {
-    public function geDataTimeKeeping()
+    public function geDataTimeKeeping(Request $request)
     {
-        $month = date("m");
+        $month= $request -> month;
+        $year = $request -> year;
+        //$month = date("m");
         $id = Session::get('id');
-        $result = DB::select("select * from timekeeping where month (timekeepingDate) = $month and empid = $id");
+        $result = DB::select("select * from timekeeping where month (timekeepingDate) = $month and year (timekeepingDate) = $year and empid = $id");
         return $result;
     }
 
