@@ -61,9 +61,9 @@
                 <div id="vnclock" align="center" style="margin-right:20px; margin-top:10px "></div>
             </li>
             <li>
-                <a href="home">
+                <a>
                     <img src="/img/logoKdas.png" alt="logo2.png" border="0"
-                         style="height:100px; width: 170px" onclick="homePage()"/>
+                         style="height:100px; width: 170px" onclick="HomePage()"/>
                 </a>
             </li>
         </ul>

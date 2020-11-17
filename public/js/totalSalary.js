@@ -1,8 +1,18 @@
 $(function () {
     $('#excelfile').on('change', function () {
+        $("#excelfile").attr('disabled','disabled');
+        $('#tinhluong').removeAttr('disabled');
         ExportToTable();
     });
+
+    $( "#cancelTotal" ).click(function() {
+        $('input[type="file"]').val("");
+        $("#exceltable tr").remove();
+        $("#tinhluong").attr('disabled','disabled');
+        $('input[type="file"]').removeAttr('disabled');
+    });
 });
+
 
 
 function ExportToTable() {
@@ -89,7 +99,6 @@ function BindTableHeader(jsondata, tableid) {/*Function used to get all column n
 
 
 function TinhLuong() {
-    alert("Done");
     var arrayCur = new Array();
     $("#exceltable tr").each(function (i0) {
         var arrTemp = new Array();
@@ -98,38 +107,30 @@ function TinhLuong() {
         });
         arrayCur.push(arrTemp);
     });
-    for (var i = 1; i <= arrayCur.length; i++) {
-        var Time_id = arrayCur[i][0];
-        var Employee_Id = arrayCur[i][1];
-        var DateWork = arrayCur[i][2];
-        var timeStartAM = arrayCur[i][3];
-        var timeFinishAM = arrayCur[i][4];
-        var timeStartPM = arrayCur[i][5];
-        var timeFinishPM = arrayCur[i][6];
-        var timeStartOT = arrayCur[i][7];
-        var timeFinishOT = arrayCur[i][8];
-        $.ajax({
-            url: "/updateSalary",
-            type: "Get",
-            data: {
-                Time_id: Time_id,
-                Employee_Id: Employee_Id,
-                DateWork: DateWork,
-                timeStartAM: timeStartAM,
-                timeFinishAM: timeFinishAM,
-                timeStartPM: timeStartPM,
-                timeFinishPM: timeFinishPM,
-                timeStartOT: timeStartOT,
-                timeFinishOT: timeFinishOT,
-            },
-            success: function (data) {
-
-            },
-            error: function () {
-                swal("Error", "Your imaginary file is safe :)", "error");
-            }
-        });
-    }
+    $.ajax({
+        url: "/updateSalary",
+        type: "Get",
+        data: {
+            arr: arrayCur
+        },
+        success: function (data) {
+            localStorage.setItem("swal",
+                swal({
+                    title: "Success!",
+                    text: "Message sent",
+                    type: "success",
+                    timer: 800,
+                    showConfirmButton: false
+                })
+                );
+            window.setTimeout(function () {
+                location.reload();
+            }, 800);
+        },
+        error: function () {
+            swal("Error", "Your imaginary file is safe :)", "error");
+        }
+    });
 
 }
 
@@ -140,12 +141,12 @@ $(document).ready(function () {
     var year = current.getFullYear();
     document.getElementById("start").value = year + "-" + month;
 
-    getDataTimekeeping(month,year);
+    getDataTimekeeping(month, year);
 
     $("#start").change(function () {
         var x = document.getElementById("start").value;
         var time = x.split("-");
-        getDataTimekeeping(time[1],time[0]);
+        getDataTimekeeping(time[1], time[0]);
     });
 });
 

@@ -35,23 +35,23 @@ class OganizationController extends Controller
         $parentid = $request->parentid;
         $lstDepartment = null;
         if ($parentid == 0)
-            $lstDepartment = DB::select("select * from employee ");
+            $lstDepartment = DB::select("select * from employee where isdelete = 0");
         else
-            $lstDepartment = DB::select("select * from employee where departmentid = $depId");
+            $lstDepartment = DB::select("select * from employee where departmentid = $depId and isdelete = 0");
         return $lstDepartment;
 
     }
 
     public function getEmpByReady()
     {
-        $lstDepartment = DB::select("select * from employee ");
+        $lstDepartment = DB::select("select * from employee where isdelete = 0");
         return $lstDepartment;
     }
 
     public function getEmpByTitle(Request $request)
     {
         $titleId = $request->titleId;
-            $lstDepartment = DB::select("select * from employee where titleid = $titleId");
+            $lstDepartment = DB::select("select * from employee where titleid = $titleId and isdelete = 0");
         return $lstDepartment;
 
     }
@@ -65,7 +65,7 @@ class OganizationController extends Controller
     }
     public function getTitleById(Request $request){
         $id = $request ->id;
-        $result = DB::select("select title.idTitle,title.nameTitle from title,departmentTitle where title.idTitle = departmentTitle.titleId and departmenttitle.depId = $id");
+        $result = DB::select("select title.idTitle,title.nameTitle from title,departmentTitle where title.idTitle = departmentTitle.titleId and isdelete = 0 and departmenttitle.depId = $id");
         return $result;
     }
 }

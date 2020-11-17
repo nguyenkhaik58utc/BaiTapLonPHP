@@ -45,3 +45,7 @@ $(document).ready(function () {
         $("#sidebar-container").animate({ opacity: "0", width: "0" });
     })
 });
+
+function HomePage(){
+    window.location.href = "http://localhost:8000/Home";
+}

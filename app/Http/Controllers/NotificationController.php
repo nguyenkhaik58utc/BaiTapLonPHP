@@ -10,7 +10,7 @@ class NotificationController extends Controller
 {
     public function getNotification(){
         $id = Session::get('id');
-        $result = DB::select("select * from notification where idUser != $id");
+        $result = DB::select("select * from notification where idUser != $id order by id DESC");
         return $result;
     }
 

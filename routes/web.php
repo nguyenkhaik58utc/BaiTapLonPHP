@@ -14,7 +14,7 @@ Route::get('/logout', function () {
     return view('Login.LoginPage');
 });
 Route::get('/Home', function () {
-    return view('Home.layout');
+    return view('Home.Home');
 });
 
 
@@ -140,6 +140,9 @@ Route::get('/getNumberGirl', 'OganizationController@getNumberGirl');
 Route::get('/getAllDepartment', 'OganizationController@getAllDepartment');
 Route::get('/getAllTitle', 'OganizationController@getAllTitle');
 Route::get('/getTitleById', "OganizationController@getTitleById");
+
+//post
+Route::get('/getPost','PostController@getPost');
 
 // database
 Route::get("db", function () {

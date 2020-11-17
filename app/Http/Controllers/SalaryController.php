@@ -13,7 +13,6 @@ class SalaryController extends Controller
     {
         $month= $request -> month;
         $year = $request -> year;
-        //$month = date("m");
         $id = Session::get('id');
         $result = DB::select("select * from timekeeping where month (timekeepingDate) = $month and year (timekeepingDate) = $year and empid = $id");
         return $result;
@@ -21,23 +20,42 @@ class SalaryController extends Controller
 
     public function updateSalary(Request $request)
     {
-        $Time_id = $request->Time_id;
-        $Employee_Id = $request->Employee_Id;
-        $DateWork = $request->DateWork;
-        $timeStartAM = $request->timeStartAM;
-        $timeFinishAM = $request->timeFinishAM;
-        $timeStartPM = $request->timeStartPM;
-        $timeFinishPM = $request->timeFinishPM;
-        $timeStartOT = $request->timeStartOT;
-        $timeFinishOT = $request->timeFinishOT;
-        $checkTime = DB::select("select count(id) from timekeeping where id = $Time_id");
-        if ($checkTime != 0) {
-            DB::table('timekeeping')->where('id', $Time_id)->update(['empid' => $Employee_Id, 'timekeepingDate' => $DateWork
-                , 'timeStartAM' => $timeStartAM, 'timeFinishAM' => $timeFinishAM, 'timeStartPM' => $timeStartPM,
-                'timeFinishPM' => $timeFinishPM, 'timeStartOT' => $timeStartOT, 'timeFinishOT' => $timeFinishOT]);
-        } else {
+//        $Time_id = $request->Time_id;
+//        $Employee_Id = $request->Employee_Id;
+//        $DateWork = $request->DateWork;
+//        $timeStartAM = $request->timeStartAM;
+//        $timeFinishAM = $request->timeFinishAM;
+//        $timeStartPM = $request->timeStartPM;
+//        $timeFinishPM = $request->timeFinishPM;
+//        $timeStartOT = $request->timeStartOT;
+//        $timeFinishOT = $request->timeFinishOT;
+//        $checkTime = DB::select("select count(id) from timekeeping where id = $Time_id");
+//        if ($checkTime != 0) {
+//            DB::table('timekeeping')->where('id', $Time_id)->update(['empid' => $Employee_Id, 'timekeepingDate' => $DateWork
+//                , 'timeStartAM' => $timeStartAM, 'timeFinishAM' => $timeFinishAM, 'timeStartPM' => $timeStartPM,
+//                'timeFinishPM' => $timeFinishPM, 'timeStartOT' => $timeStartOT, 'timeFinishOT' => $timeFinishOT]);
+//        } else {
+//
+//        }
+        $result = $request -> arr;
+        $month = date('m',strtotime($result[1][2]));
+        $today = getdate();
+        $year = $today["year"];
 
+        DB::select("delete from timekeeping where month (	timekeepingDate) = $month and year (	timekeepingDate) = $year");
+
+        foreach ($result as $index){
+            $idEmp = $index[1];
+            $date = date("y-m-d",strtotime($index[2]."20"));
+            $startAM = $index[3];
+            $finishAM = $index[4];
+            $startPM = $index[5];
+            $finishPM = $index[6];
+            $startOT = $index[7];
+            $finishOT = $index[8];
+            DB::table("timekeeping")->insert(["empID" => $idEmp, "timekeepingDate" => $date,"timeStartAM" => $startAM,"timeFinishAM" => $finishAM,"timeStartPM" => $startPM,"timeFinishPM" => $finishPM,"timeStartOT" => $startOT,"timeFinishOT" => $finishOT]);
         }
+        return $result[1][0];
     }
 
     public function sumSalary()

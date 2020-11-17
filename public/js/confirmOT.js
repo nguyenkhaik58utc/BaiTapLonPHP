@@ -202,31 +202,36 @@ function functionEdit() {
 function cancelRegistration() {
     var a = document.getElementById("otId").value;
     var b = document.getElementById("reasonForCancel").value;
-    $.ajax({
-        url: "/RefuseRegistration",
-        type: "Get",
-        data: {
-            otId: a,
-            reasonForCancel: b
-        },
-        success: function (data) {
-            localStorage.setItem("swal",
-                swal({
-                    title: "Success!",
-                    text: "Message sent",
-                    type: "success",
-                    timer: 800,
-                    showConfirmButton: false
-                })
-            );
-            window.setTimeout(function () {
-                location.reload();
-            }, 800);
-        },
-        error: function () {
-            swal("Error", "Your imaginary file is safe :)", "error");
-        }
-    });
+
+    if (b != "") {
+
+        $.ajax({
+            url: "/RefuseRegistration",
+            type: "Get",
+            data: {
+                otId: a,
+                reasonForCancel: b
+            },
+            success: function (data) {
+                localStorage.setItem("swal",
+                    swal({
+                        title: "Success!",
+                        text: "Message sent",
+                        type: "success",
+                        timer: 800,
+                        showConfirmButton: false
+                    })
+                    );
+                window.setTimeout(function () {
+                    location.reload();
+                }, 800);
+            },
+            error: function () {
+                swal("Error", "Your imaginary file is safe :)", "error");
+            }
+        });
+    } else
+        alert("hãy nhập lý do");
 }
 
 function Submit() {
@@ -249,7 +254,7 @@ function Submit() {
                     timer: 800,
                     showConfirmButton: false
                 })
-            );
+                );
             window.setTimeout(function () {
                 location.reload();
             }, 800);
@@ -342,9 +347,3 @@ function functionSearchOT(statusId) {
         });
 }
 
-function exportExcel1() {
-    $("#year").val(year);
-    $("#temp").val(temp);
-    $("#month").val(month);
-    $("#btn-download").parent().submit();
-}

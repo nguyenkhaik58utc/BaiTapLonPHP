@@ -226,148 +226,22 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
                     check = 0;
                     return false;
                 } else {
-                    // check nga`y hiê?n ta?i
-                    if (dateInput2.getMonth() == dateNow.getMonth() && dateInput2.getFullYear() == dateNow.getFullYear() && dateInput2.getDate() == dateNow.getDate()) {
-                        if (arrTimeStart[0] < now.getHours()) {
-                            status = "Thời gian bắt đầu không hợp lệ!\n Thời gian bắt đầu nhỏ hơn thời gian hiện tại";
+                    var day = dateInput2.getDay();
+                    if (day == 0 || day == 6 || checkHoliday(dateInput2) == 1) {
+                        checkDateTime2(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, dateInput2, arrTimeStart, arrTimeFinish, arrAddr, checkClick);
+                    } else {
+                        if ((arrTimeStart[0] == 17 && arrTimeStart[1] >= 30) ||  arrTimeStart[0] > 17) {
+                            checkDateTime2(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, dateInput2, arrTimeStart, arrTimeFinish, arrAddr, checkClick);
+                        } else {
+                            status = "Thời gian bắt đầu phải sau 17h30!";
                             notification(status);
-
                             if (arrAddr.length != 0) {
                                 arrAddr[i][0].css("color", "black");
-                                arrAddr[i][2].css("color", "black");
-                                arrAddr[i][3].css("color", "black");
                                 arrAddr[i][1].css("color", "red");
-                            }
-                            check = 0;
-                            return false;
-                        } else {
-                            if (arrTimeStart[0] == now.getHours() && arrTimeStart[1] > now.getMinutes() && arrTimeStart[0] < arrTimeFinish[0]) {
-                                check = 1;
-                                if (checkClick == 1) {
-                                    for (var j = 0; j < arrayData.length; j++) {
-                                        if (NgayDangKy == arrayData[j]["registrationDate"]) {
-                                            check = 0;
-                                            status = "Dữ liệu đã tồn tại!";
-                                            notification(status);
-                                            break;
-                                        } else {
-                                            check = 1;
-                                            status = " ";
-                                            notification(status);
-                                        }
-                                    }
-                                }
-                                var a = check;
-                                if (arrAddr.length != 0) {
-                                    arrAddr[i][1].css("color", "black");
-                                    arrAddr[i][2].css("color", "black");
-                                    arrAddr[i][3].css("color", "black");
-                                    arrAddr[i][0].css("color", "black");
-                                }
-
-                            } else {
-                                if (arrTimeStart[0] > now.getHours() && arrTimeStart[0] < arrTimeFinish[0]) {
-                                    check = 1;
-                                    if (checkClick == 1) {
-                                        for (var j = 0; j < arrayData.length; j++) {
-                                            if (NgayDangKy == arrayData[j]["registrationDate"]) {
-                                                check = 0;
-                                                status = "Dữ liệu đã tồn tại!";
-                                                notification(status);
-                                                break;
-                                            } else {
-                                                check = 1;
-                                                status = " ";
-                                                notification(status);
-                                            }
-                                        }
-                                    }
-                                    var a = check;
-                                    if (arrAddr.length != 0) {
-                                        arrAddr[i][1].css("color", "black");
-                                        arrAddr[i][2].css("color", "black");
-                                        arrAddr[i][3].css("color", "black");
-                                        arrAddr[i][0].css("color", "black");
-                                    }
-
-                                } else {
-                                    if (arrTimeStart[0] < now.getHours() || (arrTimeStart[0] == now.getHours() && arrTimeStart[1] < now.getMinutes())) {
-                                        status = "Thời gian bắt đầu không hợp lệ!\n Thời gian bắt đầu nhở hơn thời gian hiện tại";
-                                        notification(status);
-                                        if (arrAddr.length != 0) {
-                                            arrAddr[i][0].css("color", "black");
-                                            arrAddr[i][3].css("color", "black");
-                                            arrAddr[i][1].css("color", "red");
-                                            arrAddr[i][2].css("color", "red");
-                                        }
-                                        check = 0;
-                                        return false;
-                                    } else {
-                                        status = "Thời gian bắt đầu lớn hơn thời gian kết thúc!";
-                                        notification(status);
-                                        if (arrAddr.length != 0) {
-                                            arrAddr[i][0].css("color", "black");
-                                            arrAddr[i][3].css("color", "black");
-                                            arrAddr[i][1].css("color", "red");
-                                            arrAddr[i][2].css("color", "red");
-                                        }
-                                        check = 0;
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        if (dateInput2.getFullYear() > dateNow.getFullYear() || (dateInput2.getFullYear() == dateNow.getFullYear() && dateInput2.getMonth() > dateNow.getMonth()) || (dateInput2.getFullYear() == dateNow.getFullYear() && dateInput2.getMonth() == dateNow.getMonth() && dateInput2.getDate() > dateNow.getDate())) {
-                            if ((arrTimeStart[0] == arrTimeFinish[0] && arrTimeStart[1] < arrTimeFinish[1]) || arrTimeStart[0] < arrTimeFinish[0]) {
-                                check = 1;
-                                if (checkClick == 1) {
-                                    for (var j = 0; j < arrayData.length; j++) {
-                                        if (NgayDangKy == arrayData[j]["registrationDate"]) {
-                                            check = 0;
-                                            status = "Dữ liệu đã tồn tại!";
-                                            notification(status);
-                                            break;
-                                        } else {
-                                            check = 1;
-                                            status = " ";
-                                            notification(status);
-                                        }
-                                    }
-                                }
-                                var a = check;
-                                if (arrAddr.length != 0) {
-                                    arrAddr[i][1].css("color", "black");
-                                    arrAddr[i][2].css("color", "black");
-                                    arrAddr[i][3].css("color", "black");
-                                    arrAddr[i][0].css("color", "black");
-                                }
-                            } else {
-                                status = "thời gian bắt đầu và thời gian kết thúc không hợp lệ!";
-                                notification(status);
-                                if (arrAddr.length != 0) {
-                                    arrAddr[i][0].css("color", "black");
-                                    arrAddr[i][3].css("color", "black");
-                                    arrAddr[i][1].css("color", "red");
-                                    arrAddr[i][2].css("color", "red");
-                                }
-                                console.log(arrAddr[i][0].html());
-                                check = 0;
-                                return false;
-                            }
-                        } else {
-                            status = "Nhập ngày không hợp lệ!\n Thời gian đăng ký nhỏ hơn thời gian hiện tại";
-                            notification(status);
-                            if (arrAddr.length != 0) {
-                                arrAddr[i][1].css("color", "black");
                                 arrAddr[i][2].css("color", "black");
                                 arrAddr[i][3].css("color", "black");
-                                arrAddr[i][0].css("color", "red");
                             }
-                            check = 0;
-                            return false;
                         }
-
                     }
                 }
             }
@@ -375,6 +249,167 @@ function checkDateTime(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, d
     }
 }
 
+function checkDateTime2(i, NgayDangKy, TGBatDau, TGKetThuc, LyDo, now, dateNow, dateInput2, arrTimeStart, arrTimeFinish, arrAddr, checkClick) {
+    // check nga`y hiê?n ta?i
+    if (dateInput2.getMonth() == dateNow.getMonth() && dateInput2.getFullYear() == dateNow.getFullYear() && dateInput2.getDate() == dateNow.getDate()) {
+        if (arrTimeStart[0] < now.getHours()) {
+            status = "Thời gian bắt đầu không hợp lệ!\n Thời gian bắt đầu nhỏ hơn thời gian hiện tại";
+            notification(status);
+
+            if (arrAddr.length != 0) {
+                arrAddr[i][0].css("color", "black");
+                arrAddr[i][2].css("color", "black");
+                arrAddr[i][3].css("color", "black");
+                arrAddr[i][1].css("color", "red");
+            }
+            check = 0;
+            return false;
+        } else {
+            if (arrTimeStart[0] == now.getHours() && arrTimeStart[1] > now.getMinutes() && arrTimeStart[0] < arrTimeFinish[0]) {
+                check = 1;
+                if (checkClick == 1) {
+                    for (var j = 0; j < arrayData.length; j++) {
+                        if (NgayDangKy == arrayData[j]["registrationDate"]) {
+                            check = 0;
+                            status = "Dữ liệu đã tồn tại!";
+                            notification(status);
+                            break;
+                        } else {
+                            check = 1;
+                            status = " ";
+                            notification(status);
+                        }
+                    }
+                }
+                var a = check;
+                if (arrAddr.length != 0) {
+                    arrAddr[i][1].css("color", "black");
+                    arrAddr[i][2].css("color", "black");
+                    arrAddr[i][3].css("color", "black");
+                    arrAddr[i][0].css("color", "black");
+                }
+
+            } else {
+                if (arrTimeStart[0] > now.getHours() && arrTimeStart[0] < arrTimeFinish[0]) {
+                    check = 1;
+                    if (checkClick == 1) {
+                        for (var j = 0; j < arrayData.length; j++) {
+                            if (NgayDangKy == arrayData[j]["registrationDate"]) {
+                                check = 0;
+                                status = "Dữ liệu đã tồn tại!";
+                                notification(status);
+                                break;
+                            } else {
+                                check = 1;
+                                status = " ";
+                                notification(status);
+                            }
+                        }
+                    }
+                    var a = check;
+                    if (arrAddr.length != 0) {
+                        arrAddr[i][1].css("color", "black");
+                        arrAddr[i][2].css("color", "black");
+                        arrAddr[i][3].css("color", "black");
+                        arrAddr[i][0].css("color", "black");
+                    }
+
+                } else {
+                    if (arrTimeStart[0] < now.getHours() || (arrTimeStart[0] == now.getHours() && arrTimeStart[1] < now.getMinutes())) {
+                        status = "Thời gian bắt đầu không hợp lệ!\n Thời gian bắt đầu nhở hơn thời gian hiện tại";
+                        notification(status);
+                        if (arrAddr.length != 0) {
+                            arrAddr[i][0].css("color", "black");
+                            arrAddr[i][3].css("color", "black");
+                            arrAddr[i][1].css("color", "red");
+                            arrAddr[i][2].css("color", "red");
+                        }
+                        check = 0;
+                        return false;
+                    } else {
+                        status = "Thời gian bắt đầu lớn hơn thời gian kết thúc!";
+                        notification(status);
+                        if (arrAddr.length != 0) {
+                            arrAddr[i][0].css("color", "black");
+                            arrAddr[i][3].css("color", "black");
+                            arrAddr[i][1].css("color", "red");
+                            arrAddr[i][2].css("color", "red");
+                        }
+                        check = 0;
+                        return false;
+                    }
+                }
+            }
+        }
+    } else {
+        if (dateInput2.getFullYear() > dateNow.getFullYear() || (dateInput2.getFullYear() == dateNow.getFullYear() && dateInput2.getMonth() > dateNow.getMonth()) || (dateInput2.getFullYear() == dateNow.getFullYear() && dateInput2.getMonth() == dateNow.getMonth() && dateInput2.getDate() > dateNow.getDate())) {
+            if ((arrTimeStart[0] == arrTimeFinish[0] && arrTimeStart[1] < arrTimeFinish[1]) || arrTimeStart[0] < arrTimeFinish[0]) {
+                check = 1;
+                if (checkClick == 1) {
+                    for (var j = 0; j < arrayData.length; j++) {
+                        if (NgayDangKy == arrayData[j]["registrationDate"]) {
+                            check = 0;
+                            status = "Dữ liệu đã tồn tại!";
+                            notification(status);
+                            break;
+                        } else {
+                            check = 1;
+                            status = " ";
+                            notification(status);
+                        }
+                    }
+                }
+                var a = check;
+                if (arrAddr.length != 0) {
+                    arrAddr[i][1].css("color", "black");
+                    arrAddr[i][2].css("color", "black");
+                    arrAddr[i][3].css("color", "black");
+                    arrAddr[i][0].css("color", "black");
+                }
+            } else {
+                status = "thời gian bắt đầu và thời gian kết thúc không hợp lệ!";
+                notification(status);
+                if (arrAddr.length != 0) {
+                    arrAddr[i][0].css("color", "black");
+                    arrAddr[i][3].css("color", "black");
+                    arrAddr[i][1].css("color", "red");
+                    arrAddr[i][2].css("color", "red");
+                }
+                console.log(arrAddr[i][0].html());
+                check = 0;
+                return false;
+            }
+        } else {
+            status = "Nhập ngày không hợp lệ!\n Thời gian đăng ký nhỏ hơn thời gian hiện tại";
+            notification(status);
+            if (arrAddr.length != 0) {
+                arrAddr[i][1].css("color", "black");
+                arrAddr[i][2].css("color", "black");
+                arrAddr[i][3].css("color", "black");
+                arrAddr[i][0].css("color", "red");
+            }
+            check = 0;
+            return false;
+        }
+
+    }
+}
+
+function checkHoliday(date) {
+    var holidays = ["2020-01-01", "2020-04-30", "2020-05-01", "2020-09-02", "2021-01-01"];
+    var day = date.getDate();
+    var month = date.getMonth();
+    var year = date.getFullYear();
+    var check = 0;
+    for (var i = 0; i < holidays.length; i++) {
+        var arrIndex = holidays[i].split("-");
+        if (arrIndex[2] == day && arrIndex[1] == month && arrIndex[0] == year) {
+            check = 1;
+            break;
+        }
+    }
+
+}
 
 // thay dô?i thông tin li?ch dang ky´ la`m viê?c
 function editTime() {
@@ -418,7 +453,6 @@ function editTime() {
             var dateInput = new Date(arrayEdit[i][1]);
             var dateInput2 = new Date(dateInput.getFullYear(), dateInput.getMonth(), dateInput.getDate() - 1 + 1);
             // tho`i gian ba´t dâ`u
-
             var arrTimeStart = arrayEdit[i][2].split(":");
             // tho`i gian kê´t thu´c
 

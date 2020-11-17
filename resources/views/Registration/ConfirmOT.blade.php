@@ -49,12 +49,6 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <button id="btn-download" type="button" class="btn btn-info"
-                                    onclick="exportExcel1()">Export
-                            </button>
-
-                        </li>
-                        <li class="nav-item">
                             <button type="button" class="btn btn-info" onclick="Submit()">Submit</button>
                         </li>
                     </ul>

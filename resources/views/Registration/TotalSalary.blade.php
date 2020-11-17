@@ -12,7 +12,8 @@
 </head>
 <body>
 <input type="file" id="excelfile" class="btn btn-info" />
-<button type="button" class="btn btn-info" onclick="TinhLuong()" style="margin-top:20px">Tính Lương</button>
+<button type="button" id="tinhluong" class="btn btn-info" onclick="TinhLuong()" style="margin-top:20px" disabled>Tính Lương</button>
+<button type="button" class="btn btn-info" id="cancelTotal" style="margin-top:20px">Hủy</button>
 <br />
 <br />
 <table id="exceltable" class=" table order-list" style="border:dashed">

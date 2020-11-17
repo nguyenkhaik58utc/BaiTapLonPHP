@@ -31,6 +31,19 @@ class ConfirmOverTimeController extends Controller
         $arrId = $request->arrId;
         foreach ($arrId as $item) {
             DB::table('registrationDetail')->where('id', $item)->update(['statusId' => 1]);
+            $result = DB::select("select * from registrationDetail where id = $item");
+            $registrationDate =$result[0] ->registrationDate;
+            $timeStart =$result[0] -> timeStart;
+            $timeFinish =$result[0] -> timeFinish;
+            $id =$result[0] -> userId;
+            $checkdate = DB::select("select * from timekeeping where timekeepingDate = $registrationDate and empId = $id");
+            if(count($checkdate) == 0){
+                DB::table("timekeeping") ->insert(["empId" => $id,"timekeepingDate" => $registrationDate,"timeStartOT" => $timeStart,"timeFinishOT" => $timeFinish,"timeStartAM" => 0,"timeFinishAM" => 0,"timeStartPM" => 0,"timeFinishPM" => 0]);
+            }
+            else{
+                DB::table("timekeeping") -> where("timekeepingDate", $registrationDate) ->where("empId", $id) -> update(["timeStartOT" => $timeStart,"timeFinishOT" => $timeFinish]);
+            }
+            var_dump($checkdate);
         }
         return true;
     }
