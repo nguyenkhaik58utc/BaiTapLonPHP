@@ -65,7 +65,7 @@ class OganizationController extends Controller
     }
     public function getTitleById(Request $request){
         $id = $request ->id;
-        $result = DB::select("select title.idTitle,title.nameTitle from title,departmentTitle where title.idTitle = departmentTitle.titleId and isdelete = 0 and departmenttitle.depId = $id");
+        $result = DB::select("select title.idTitle,title.nameTitle from title,departmentTitle where title.idTitle = departmentTitle.titleId  and departmenttitle.depId = $id");
         return $result;
     }
 }

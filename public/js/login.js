@@ -24,7 +24,7 @@ function login() {
                 },
                 success: function (data) {
                     if (data.length != 0)
-                        window.location.href = "http://localhost:8000/Home";
+                        window.location.href = "/Home";
                     else swal("Error", "User Or Password False", "error");
                 },
                 error: function () {
