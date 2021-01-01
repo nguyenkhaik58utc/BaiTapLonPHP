@@ -47,5 +47,5 @@ $(document).ready(function () {
 });
 
 function HomePage(){
-    window.location.href = "http://localhost:8000/Home";
+    window.location.href = "/Home";
 }

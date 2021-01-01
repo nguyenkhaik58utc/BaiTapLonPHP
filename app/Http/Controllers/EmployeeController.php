@@ -77,7 +77,7 @@ WHERE employee.departmentid = department.id and isdelete = 0 and employee.titleI
         $optionRoles = $request->optionRoles;
         $pw = base64_encode("123456789Aabc");
         DB::table('employee')->insert(['nameEmp' => $employeeName, 'userEmp' => $userEmp, 'departmentId' => $department, 'titleid' => $title, 'birthday' => $dateOfBirth, 'isdelete' => 0,
-            'sex' => $sex, 'email' => $emailAddress, 'address' => $addressEmp, 'phone' => $phoneNumber, 'roleid' => $optionRoles, 'password' => $pw]);
+            'sex' => $sex, 'email' => $emailAddress, 'address' => $addressEmp,'image' => 'https://i0.wp.com/s1.uphinh.org/2020/12/31/132434783_149818056926076_1029854255537768696_n.jpg', 'phone' => $phoneNumber, 'roleid' => $optionRoles, 'password' => $pw]);
         return true;
     }
 
@@ -96,7 +96,7 @@ WHERE employee.departmentid = department.id and isdelete = 0 and employee.titleI
         $optionRoles = $request->optionRoles;
         $pw = base64_encode("123456789Aabc");
         DB::table('employee')->where('id', $id)->update(['nameEmp' => $employeeName, 'userEmp' => $userEmp, 'departmentId' => $department, 'titleid' => $title, 'birthday' => $dateOfBirth, 'isdelete' => 0,
-            'sex' => $sex, 'email' => $emailAddress, 'address' => $addressEmp, 'phone' => $phoneNumber, 'roleid' => $optionRoles, 'password' => $pw]);
+            'sex' => $sex, 'email' => $emailAddress, 'address' => $addressEmp,'image' => 'https://i0.wp.com/s1.uphinh.org/2020/12/31/132434783_149818056926076_1029854255537768696_n.jpg', 'phone' => $phoneNumber, 'roleid' => $optionRoles, 'password' => $pw]);
         return true;
     }
 }
